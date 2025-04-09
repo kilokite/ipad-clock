@@ -1,0 +1,25 @@
+.time {
+    border: red solid 2px;
+    background:black;
+    height: 744px;
+    width: 1133px;
+    flex-direction: row;
+    display: flex;
+    align-items: center;
+    justify-items: center;
+    font-size: 100px;
+    font-weight: 600;
+    color: white;
+}
+
+.aa {
+    // color: green;
+    flex-grow: 1;
+    width: 100%;
+    text-align: center;
+    background: rgb(228, 228, 228);
+    background: linear-gradient(185deg, rgba(228, 228, 228, 1) 0%, rgba(89, 150, 255, 1) 100%);
+    -webkit-background-clip: text;
+    background-clip:text ;
+    color: transparent;
+}

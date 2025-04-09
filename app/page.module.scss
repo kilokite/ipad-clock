@@ -1,0 +1,88 @@
+.container {
+  padding: 16px;
+  display:  flex;
+  flex-direction: column;
+  width: 100%;
+  background-color: #080808;
+  // height: 100vh;
+}
+
+.buttonContainer{
+  margin: 1rem 0 !important;
+  padding: 1rem;
+  height: 312px;
+}
+.timeContainer {
+  display: flex;
+  .menu {
+    margin-top: 3rem;
+    margin-right:1rem;
+    display:  flex;
+    flex-direction: column;
+    flex-grow: 1;
+    .statusLightContainer {
+      display: flex;
+      flex-wrap: nowrap;
+    }
+    .hole {
+      padding: 8px;
+      display: inline-block;
+      font-weight: 600;
+      color: rgba(255, 255, 255, 0.746);
+      position: absolute;
+      right: 0;
+      bottom: 0;
+    }
+  }
+  .panel {
+    position: relative;
+    padding:  8px;
+    // height: 100%;
+    flex-grow: 1;
+  }
+  .time {
+    justify-self: end;
+  } 
+}
+.button {
+  background-color: rgba(0, 0, 0, 0.45);
+  color: rgb(34, 34, 34);
+  border: none;
+  padding: .3rem .5rem;
+}
+.logo{
+  display: block;
+  margin-left: auto;
+}
+.buttonImg {
+  width: 40px;
+  height: 40px;
+  margin: 10px;
+  transform: translateX(1px);
+}
+.timePanel {
+  padding: 1rem;
+}
+.content {
+  font-size: 15px;
+  text-align: center;
+  font-weight: 600;
+}
+.CRT {
+  display: inline-block;
+  height: 270px !important;
+}
+.CRTContainer {
+  display: flex;
+  .ctrlPanel{
+    margin: 1rem;
+  }
+  .menu {
+    .select {
+      background-color: white;
+      color: black;
+    }
+  }
+  // flex-wrap: wrap;
+  // justify-content: center;
+}

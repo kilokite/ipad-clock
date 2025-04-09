@@ -1,0 +1,55 @@
+.statusLight {
+    //可自定义选项：文字，状态，背景颜色，大小，衬线字体，文字微调，文字大小//阴影，圆角，背景渐变，边框圆角
+    //文字设置后应不允许改变，根据文字计算按钮大小
+    margin: 8px;
+    // max-width: 350px;
+    // max-height: 133px;
+    /* background */
+    // width: 350px;
+    // height: 133px;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.39);
+    border-radius: 5px;
+
+    background: rgba(255, 0, 0, 0.837) radial-gradient(62.78% 62.78% at 50% 50%, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.7) 100%);
+    border-radius: 5px;
+    display: inline-block;
+    // vertical-align: top;
+    // justify-content: center;
+    // align-items: center;
+    // overflow: auto;
+    // filter: brightness(1.4);
+    .text {
+        line-height: 100%;
+        left: calc(50% - 294px/2 + 0.5px);
+        top: calc(50% - 117px/2);
+        font-style: normal;
+        font-weight: 600;
+        font-size: 60px;
+        text-align: center;
+        display: inline-block;
+        // line-height: 121.17%;
+        /* identical to box height, or 116px */
+
+        color: #000000;
+    }
+}
+.off{
+    filter: brightness(0.5) hue-rotate(-10deg);;
+    // transition: all 0.05s ease-in-out;
+}
+.blink {
+    animation: blink 1s infinite;
+}
+.serif {
+    font-family: "SongTi",serif !important;
+}
+.sansSerif {
+}
+@keyframes blink {
+    0%,50%{
+        filter: brightness(0.5) hue-rotate(-10deg);
+    }
+    51%{
+        filter: brightness(1) hue-rotate(0deg);
+    }
+}

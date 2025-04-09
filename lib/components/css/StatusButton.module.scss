@@ -1,0 +1,67 @@
+@keyframes blink {
+    0%{
+        // background: radial-gradient(55.68% 55.68% at 55.68% 70.95%, #890000 0%, #000000 100%);
+        // background-color: red;
+    }
+    50%{
+        background: radial-gradient(55.68% 55.68% at 55.68% 70.95%, #FF0000 0%, #000000 100%);
+        // background-color: black;
+    }
+}
+
+.container {
+    vertical-align:top;
+    position: relative;
+    display: inline-block;
+    width: 60px;
+    height: 60px;
+    background: #E5E5E5;
+    border-radius: 2px;
+    align-items: center;
+    justify-content: center;
+    margin: 8px;
+    overflow: hidden;
+
+    >div {
+        display: flex;
+        height: 100%;
+        width: 100%;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .content {
+        font-family: 'Sono';
+        font-style: normal;
+        font-weight: 500;
+        font-size: 40px;
+        line-height: 100%;
+        text-align: center;
+    }
+    .allContent {
+        user-select: none;
+        color: #000000;
+    }
+
+    .light {
+        /* Rectangle 48 */
+        position: absolute;
+        width: 19px;
+        height: 12px;
+        left: -7px;
+        top: -3.5px;
+        background: radial-gradient(55.68% 55.68% at 55.68% 70.95%, #890000 0%, #000000 100%);
+        transform: rotate(-45.99deg);
+
+        &.on {
+            background: radial-gradient(55.68% 55.68% at 55.68% 70.95%, #FF0000 0%, #000000 100%);
+        }
+
+        &.blink {
+            animation: blink .5s none infinite;
+        }
+    }
+    .noStatus {
+        display: none;
+    }
+}
