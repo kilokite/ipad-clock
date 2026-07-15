@@ -445,6 +445,125 @@
   box-shadow: 0 0 6px color-mix(in srgb, var(--signal-color) 55%, transparent);
 }
 
+.tapeButton {
+  align-items: center;
+  background: linear-gradient(180deg, #070807, #151615);
+  border: 1px solid #2b2d2a;
+  border-radius: 6px;
+  box-shadow:
+    inset 0 5px 9px rgba(0, 0, 0, .92),
+    inset 0 -1px 0 rgba(255, 255, 255, .045),
+    0 1px 0 rgba(255, 255, 255, .025);
+  cursor: pointer;
+  display: inline-flex;
+  height: 66px;
+  justify-content: center;
+  padding: 8px;
+  position: relative;
+  -webkit-tap-highlight-color: transparent;
+  width: 66px;
+
+  &::after {
+    border: 1px solid rgba(0, 0, 0, .66);
+    border-radius: 4px;
+    content: '';
+    inset: 5px;
+    pointer-events: none;
+    position: absolute;
+  }
+
+  &:hover:not(:disabled) .tapeButtonCap {
+    filter: brightness(1.07) saturate(1.04);
+  }
+
+  &:active:not(:disabled) .tapeButtonCap {
+    box-shadow:
+      inset 0 2px 3px rgba(255, 255, 255, .1),
+      inset 0 -4px 6px rgba(0, 0, 0, .27),
+      0 1px 0 color-mix(in srgb, var(--button-color) 35%, #080908);
+    transform: translateY(3px);
+  }
+
+  &:focus-visible {
+    outline: 2px solid color-mix(in srgb, var(--button-color) 64%, white);
+    outline-offset: 3px;
+  }
+
+  &:disabled {
+    cursor: not-allowed;
+    filter: saturate(.35) brightness(.64);
+  }
+}
+
+.tapeButtonWide {
+  width: 132px;
+}
+
+.tapeButtonCap {
+  align-items: center;
+  background:
+    linear-gradient(105deg, rgba(255, 255, 255, .14), transparent 28%),
+    linear-gradient(180deg,
+      color-mix(in srgb, var(--button-color) 94%, white) 0%,
+      var(--button-color) 42%,
+      color-mix(in srgb, var(--button-color) 76%, #111311) 100%);
+  border: 1px solid color-mix(in srgb, var(--button-color) 52%, #171817);
+  border-radius: 4px;
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, .25),
+    inset 0 -5px 7px rgba(0, 0, 0, .2),
+    0 6px 0 color-mix(in srgb, var(--button-color) 35%, #070807),
+    0 9px 8px rgba(0, 0, 0, .72);
+  color: color-mix(in srgb, var(--button-color) 20%, #121511);
+  display: flex;
+  height: 43px;
+  justify-content: center;
+  overflow: hidden;
+  position: relative;
+  text-shadow: 0 1px rgba(255, 255, 255, .14);
+  transform: translateY(-3px);
+  transition: box-shadow .12s ease, filter .12s ease, transform .12s ease;
+  width: 100%;
+  z-index: 1;
+
+  &::before {
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, .15), transparent);
+    content: '';
+    height: 1px;
+    left: 8px;
+    position: absolute;
+    right: 8px;
+    top: 4px;
+  }
+}
+
+.tapeButtonPressed .tapeButtonCap {
+  box-shadow:
+    inset 0 3px 5px rgba(0, 0, 0, .18),
+    inset 0 -2px 2px rgba(255, 255, 255, .06),
+    0 1px 0 color-mix(in srgb, var(--button-color) 31%, #070807),
+    0 3px 4px rgba(0, 0, 0, .55);
+  filter: brightness(.88) saturate(1.08);
+  transform: translateY(3px);
+}
+
+.tapeButtonIcon {
+  fill: currentColor;
+  height: 27px;
+  width: 27px;
+}
+
+.tapeButtonText {
+  font-family: var(--font-geist-mono), monospace;
+  font-size: 10px;
+  font-weight: 750;
+  letter-spacing: .13em;
+  line-height: 1;
+  padding-left: .13em;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
 .progressControl { width: 100%; }
 .progressHeader {
   align-items: center;
@@ -590,5 +709,6 @@
   .meterNeedleShadow,
   .meterNeedle,
   .buttonCap,
+  .tapeButtonCap,
   .progressFill { transition: none; }
 }

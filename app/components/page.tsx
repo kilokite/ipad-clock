@@ -9,11 +9,13 @@ import {
   LCD1602A,
   NumericLCD,
   SteppedSelector,
+  TapeButton,
 } from '@/lib/components/InstrumentControls'
 import styles from './page.module.scss'
 
 const inputSources = ['LINE', 'USB', 'BT'] as const
 const outputModes = ['A类', 'AB类', '直通'] as const
+type TransportMode = 'stop' | 'play' | 'record' | 'rewind' | 'fast-forward'
 
 export default function ComponentsPage() {
   const [power, setPower] = useState(true)
@@ -23,6 +25,9 @@ export default function ComponentsPage() {
   const [mode, setMode] = useState<(typeof outputModes)[number]>('A类')
   const [level, setLevel] = useState(68)
   const [bias, setBias] = useState(3.6)
+  const [transport, setTransport] = useState<TransportMode>('stop')
+  const [paused, setPaused] = useState(false)
+  const [autoReverse, setAutoReverse] = useState(true)
 
   const outputLevel = power && !mute ? level : 0
   const displayCurrent = power ? bias : 0
@@ -81,6 +86,36 @@ export default function ComponentsPage() {
           <div className={styles.selectorModule}>
             <SteppedSelector label="INPUT" options={inputSources} value={source} onChange={setSource} />
             <SteppedSelector label="OUTPUT MODE" options={outputModes} value={mode} onChange={setMode} />
+          </div>
+        </div>
+
+        <div className={styles.transportModule}>
+          <div className={styles.transportHeader}>
+            <div>
+              <span>CASSETTE TRANSPORT</span>
+              <small>DIRECT LOGIC CONTROL</small>
+            </div>
+            <output>{paused ? 'PAUSE' : transport.replace('-', ' ').toUpperCase()}</output>
+          </div>
+          <div className={styles.transportControls}>
+            <div className={styles.transportGroup}>
+              <span className={styles.controlLabel}>MECHANISM</span>
+              <div className={styles.tapeButtonBank}>
+                <TapeButton label="倒带" icon="rewind" color="blue" pressed={transport === 'rewind'} onClick={() => { setTransport('rewind'); setPaused(false) }} />
+                <TapeButton label="停止" icon="stop" color="ivory" pressed={transport === 'stop'} onClick={() => { setTransport('stop'); setPaused(false) }} />
+                <TapeButton label="播放" icon="play" color="green" pressed={transport === 'play'} onClick={() => { setTransport('play'); setPaused(false) }} />
+                <TapeButton label="录音" icon="record" color="red" pressed={transport === 'record'} onClick={() => { setTransport('record'); setPaused(false) }} />
+                <TapeButton label="快进" icon="fast-forward" color="blue" pressed={transport === 'fast-forward'} onClick={() => { setTransport('fast-forward'); setPaused(false) }} />
+              </div>
+            </div>
+            <div className={styles.transportGroup}>
+              <span className={styles.controlLabel}>FUNCTION</span>
+              <div className={styles.tapeButtonBank}>
+                <TapeButton label="PAUSE" shape="wide" color="yellow" pressed={paused} onClick={() => setPaused(!paused)} />
+                <TapeButton label="AUTO REVERSE" shape="wide" color="blue" pressed={autoReverse} onClick={() => setAutoReverse(!autoReverse)} />
+                <TapeButton label="EJECT" shape="wide" color="orange" onClick={() => { setTransport('stop'); setPaused(false) }} />
+              </div>
+            </div>
           </div>
         </div>
 
