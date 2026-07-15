@@ -53,12 +53,13 @@ export function Ammeter({
           <svg viewBox="0 0 300 218" role="meter" aria-label={`${label} ${safeValue.toFixed(1)} A`} aria-valuemin={0} aria-valuemax={max} aria-valuenow={safeValue}>
             <defs>
               <radialGradient id="ammeter-warm-face" cx="50%" cy="37%" r="72%">
-                <stop offset="0%" stopColor="#705831" />
-                <stop offset="52%" stopColor="#40331f" />
-                <stop offset="100%" stopColor="#171611" />
+                <stop offset="0%" stopColor="#f8f6f0" />
+                <stop offset="64%" stopColor="#f1ede3" />
+                <stop offset="100%" stopColor="#ded2b5" />
               </radialGradient>
             </defs>
             <rect className={css.meterFace} x="2" y="2" width="296" height="214" rx="5" />
+            <path className={css.meterScaleArc} d="M67 127 A98 98 0 0 1 233 127" />
             {ticks.map((tick) => (
               <line
                 className={classNames(css.meterTick, tick.major && css.meterTickMajor)}
@@ -73,9 +74,12 @@ export function Ammeter({
               const position = pointOnDial(150, 178, 84, -58 + index * 23.2)
               return <text className={css.meterNumber} x={position.x} y={position.y + 4} textAnchor="middle" key={number}>{number}</text>
             })}
-            <text className={css.meterLabel} x="150" y="139" textAnchor="middle">{label}</text>
+            <text className={css.meterLabel} x="150" y="140" textAnchor="middle">{label}</text>
             <text className={css.meterUnit} x="150" y="158" textAnchor="middle">A</text>
             <path className={css.meterMark} d="M135 165h30" />
+            <g className={css.meterNeedleShadow} style={{ transform: `rotate(${needleAngle}deg)` }}>
+              <path d="M150 181 L152 61 L155 181 Z" />
+            </g>
             <g className={css.meterNeedle} style={{ transform: `rotate(${needleAngle}deg)` }}>
               <path d="M147.6 178 L149.1 58 L152.4 178 Z" />
             </g>
@@ -103,14 +107,14 @@ const digitSegments: Record<string, string[]> = {
   ' ': [],
 }
 
-function SegmentDigit({ character }: { character: string }) {
-  if (character === '.') return <span className={css.decimalPoint} />
+function SegmentDigit({ character, decimal = false }: { character: string; decimal?: boolean }) {
   const active = digitSegments[character] ?? []
   return (
     <span className={css.segmentDigit}>
       {['a', 'b', 'c', 'd', 'e', 'f', 'g'].map((segment) => (
         <i className={classNames(css[`segment${segment.toUpperCase()}`], active.includes(segment) && css.segmentLit)} key={segment} />
       ))}
+      {decimal && <i className={classNames(css.decimalPoint, css.segmentLit)} />}
     </span>
   )
 }
@@ -124,20 +128,82 @@ export function NumericLCD({
   unit?: string
   label?: string
 }) {
+  const digits = Array.from(value).reduce<{ character: string; decimal: boolean }[]>((result, character) => {
+    if (character === '.') {
+      const previousDigit = result.at(-1)
+      if (previousDigit) previousDigit.decimal = true
+      return result
+    }
+
+    result.push({ character, decimal: false })
+    return result
+  }, [])
+
   return (
     <div className={css.numericLCD} aria-label={`${label} ${value} ${unit}`} role="img">
       <div className={css.lcdFasteners}><span /><span /></div>
       <div className={css.numericWindow}>
-        <div className={css.numericDigits}>{Array.from(value).map((character, index) => <SegmentDigit character={character} key={`${character}-${index}`} />)}</div>
-        <span className={css.numericUnit}>{unit}</span>
-        <span className={css.numericLabel}>{label}</span>
+        <div className={css.numericDigits}>{digits.map((digit, index) => <SegmentDigit {...digit} key={`${digit.character}-${index}`} />)}</div>
+        <div className={css.numericMeta}>
+          <span className={css.numericLabel}>{label}</span>
+          <span className={css.numericUnit}>{unit}</span>
+        </div>
       </div>
     </div>
   )
 }
 
-function formatLCDLine(line: string) {
-  return line.slice(0, 16).padEnd(16, ' ')
+const lcdGlyphs: Record<string, string[]> = {
+  ' ': ['00000', '00000', '00000', '00000', '00000', '00000', '00000'],
+  '.': ['00000', '00000', '00000', '00000', '00000', '00110', '00110'],
+  '0': ['01110', '10001', '10011', '10101', '11001', '10001', '01110'],
+  '1': ['00100', '01100', '00100', '00100', '00100', '00100', '01110'],
+  '2': ['01110', '10001', '00001', '00010', '00100', '01000', '11111'],
+  '3': ['11110', '00001', '00001', '01110', '00001', '00001', '11110'],
+  '4': ['00010', '00110', '01010', '10010', '11111', '00010', '00010'],
+  '5': ['11111', '10000', '10000', '11110', '00001', '00001', '11110'],
+  '6': ['01110', '10000', '10000', '11110', '10001', '10001', '01110'],
+  '7': ['11111', '00001', '00010', '00100', '01000', '01000', '01000'],
+  '8': ['01110', '10001', '10001', '01110', '10001', '10001', '01110'],
+  '9': ['01110', '10001', '10001', '01111', '00001', '00001', '01110'],
+  A: ['01110', '10001', '10001', '11111', '10001', '10001', '10001'],
+  B: ['11110', '10001', '10001', '11110', '10001', '10001', '11110'],
+  C: ['01111', '10000', '10000', '10000', '10000', '10000', '01111'],
+  D: ['11110', '10001', '10001', '10001', '10001', '10001', '11110'],
+  E: ['11111', '10000', '10000', '11110', '10000', '10000', '11111'],
+  F: ['11111', '10000', '10000', '11110', '10000', '10000', '10000'],
+  G: ['01111', '10000', '10000', '10111', '10001', '10001', '01111'],
+  H: ['10001', '10001', '10001', '11111', '10001', '10001', '10001'],
+  I: ['01110', '00100', '00100', '00100', '00100', '00100', '01110'],
+  K: ['10001', '10010', '10100', '11000', '10100', '10010', '10001'],
+  L: ['10000', '10000', '10000', '10000', '10000', '10000', '11111'],
+  M: ['10001', '11011', '10101', '10101', '10001', '10001', '10001'],
+  N: ['10001', '11001', '10101', '10011', '10001', '10001', '10001'],
+  O: ['01110', '10001', '10001', '10001', '10001', '10001', '01110'],
+  P: ['11110', '10001', '10001', '11110', '10000', '10000', '10000'],
+  R: ['11110', '10001', '10001', '11110', '10100', '10010', '10001'],
+  S: ['01111', '10000', '10000', '01110', '00001', '00001', '11110'],
+  T: ['11111', '00100', '00100', '00100', '00100', '00100', '00100'],
+  U: ['10001', '10001', '10001', '10001', '10001', '10001', '01110'],
+  Y: ['10001', '10001', '01010', '00100', '00100', '00100', '00100'],
+}
+
+function DotMatrixLine({ text }: { text: string }) {
+  const characters = Array.from(text.slice(0, 16).padEnd(16, ' '))
+  return (
+    <div className={css.lcdLine} aria-hidden="true">
+      {characters.map((character, characterIndex) => {
+        const rows = lcdGlyphs[character] ?? lcdGlyphs[' ']
+        return (
+          <span className={css.lcdCharacter} key={`${character}-${characterIndex}`}>
+            {rows.flatMap((row, rowIndex) => Array.from(row).map((pixel, columnIndex) => (
+              <i className={pixel === '1' ? css.lcdPixelOn : undefined} key={`${rowIndex}-${columnIndex}`} />
+            )))}
+          </span>
+        )
+      })}
+    </div>
+  )
 }
 
 export function LCD1602A({
@@ -153,8 +219,8 @@ export function LCD1602A({
       <span className={css.lcdScrew} /><span className={css.lcdScrew} />
       <div className={css.lcdBezel}>
         <div className={css.lcdScreen}>
-          <p>{formatLCDLine(lines[0])}</p>
-          <p>{formatLCDLine(lines[1])}</p>
+          <DotMatrixLine text={lines[0]} />
+          <DotMatrixLine text={lines[1]} />
         </div>
       </div>
       <span className={css.moduleMark}>LCD 1602A</span>
@@ -174,7 +240,7 @@ export function ElectricalButton({
   color?: SignalColor
 }) {
   return (
-    <div className={css.electricalControl} style={{ '--signal-color': signalColors[color] } as CSSProperties}>
+    <div className={classNames(css.electricalControl, active && css.electricalControlActive)} style={{ '--signal-color': signalColors[color] } as CSSProperties}>
       <button
         type="button"
         className={classNames(css.electricalButton, active && css.electricalButtonActive)}
@@ -186,7 +252,10 @@ export function ElectricalButton({
           <span className={css.buttonCap} />
         </span>
       </button>
-      <span className={css.electricalLabel}>{label}</span>
+      <span className={css.electricalLabel}>
+        <i aria-hidden="true" />
+        <span>{label}</span>
+      </span>
     </div>
   )
 }

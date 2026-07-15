@@ -1,9 +1,9 @@
 .ammeter {
-  background: #0b0b0a;
-  border: 1px solid #292927;
-  border-radius: 8px;
-  box-shadow: inset 8px 10px 20px rgba(0, 0, 0, .85), inset -1px -1px 0 rgba(255, 255, 255, .04), 1px 1px 0 rgba(255, 255, 255, .04);
-  padding: 18px;
+  background: linear-gradient(180deg, #080808, #151515);
+  border: 1px solid #30302f;
+  border-radius: 9px;
+  box-shadow: inset 0 9px 17px rgba(0, 0, 0, .95), inset 0 -1px 0 rgba(255, 255, 255, .06), 0 5px 10px rgba(0, 0, 0, .42);
+  padding: 20px;
   position: relative;
   width: min(100%, 360px);
 }
@@ -35,21 +35,23 @@
 }
 
 .meterBezel {
-  background: #10100f;
-  border: 1px solid #30302d;
+  background: linear-gradient(180deg, #050505, #161616);
+  border: 1px solid #343433;
   border-radius: 7px;
-  box-shadow: inset 7px 8px 13px rgba(0, 0, 0, .88), inset 0 0 0 4px #080807;
-  padding: 13px;
+  box-shadow: inset 0 8px 14px rgba(0, 0, 0, .95), inset 0 0 0 5px #090909, 0 1px 0 rgba(255, 255, 255, .08);
+  padding: 15px 14px 17px;
 }
 
 .meterGlass {
   border-radius: 5px;
-  box-shadow: inset 0 0 9px rgba(0, 0, 0, .25);
+  box-shadow: inset 0 0 18px rgba(126, 94, 38, .22), inset 0 3px 0 rgba(255, 255, 255, .27), inset 0 -4px 0 rgba(91, 67, 27, .14), 0 0 12px rgba(220, 161, 45, .08);
   overflow: hidden;
   position: relative;
 
   &::after {
-    background: radial-gradient(circle at 50% 42%, transparent 47%, rgba(0, 0, 0, .32) 100%);
+    background:
+      linear-gradient(180deg, rgba(255, 247, 215, .1), transparent 13%),
+      radial-gradient(circle at 50% 42%, transparent 54%, rgba(45, 26, 4, .35) 100%);
     content: '';
     inset: 0;
     pointer-events: none;
@@ -60,35 +62,38 @@
 }
 
 .meterFace { fill: url('#ammeter-warm-face'); }
-.meterTick { stroke: #b99b5b; stroke-width: 1; }
+.meterScaleArc { fill: none; stroke: rgba(80, 71, 49, .38); stroke-width: 1; }
+.meterTick { opacity: .78; stroke: #5a5342; stroke-width: 1; }
 .meterTickMajor { stroke-width: 2; }
 .meterNumber {
-  fill: #e0c886;
+  fill: #5d5544;
   font-family: var(--font-geist-mono), monospace;
   font-size: 10px;
   font-weight: 600;
 }
 .meterLabel {
-  fill: #c6aa68;
+  fill: #716754;
   font-family: Arial, sans-serif;
   font-size: 8px;
   font-weight: 700;
   letter-spacing: 1.4px;
 }
 .meterUnit {
-  fill: #e3c985;
+  fill: #5e5542;
   font-family: Georgia, serif;
   font-size: 17px;
 }
-.meterMark { fill: none; stroke: #9b814d; stroke-width: 1; }
+.meterMark { fill: none; stroke: #746950; stroke-width: 1; }
+.meterNeedleShadow,
 .meterNeedle {
-  fill: #e2b45f;
   transform-box: view-box;
   transform-origin: 150px 178px;
   transition: transform .22s cubic-bezier(.2, .8, .2, 1);
 }
+.meterNeedleShadow { fill: rgba(71, 49, 30, .2); }
+.meterNeedle { fill: #a75a50; }
 .meterHubOuter { fill: #171713; stroke: #080807; stroke-width: 2; }
-.meterHubInner { fill: #242019; stroke: #8a7449; stroke-width: 1; }
+.meterHubInner { fill: #29251a; stroke: #7b6330; stroke-width: 1; }
 
 .numericLCD {
   background: linear-gradient(145deg, #2b2c2a, #101110);
@@ -124,24 +129,30 @@
   border: 2px solid #090806;
   border-radius: 3px;
   box-shadow: inset 2px 3px 10px rgba(0, 0, 0, .9), 0 1px 0 rgba(255, 255, 255, .06);
-  height: 112px;
+  display: grid;
+  gap: 4px;
+  grid-template-columns: minmax(0, 1fr) 34px;
+  height: 92px;
   overflow: hidden;
-  padding: 18px 49px 16px 20px;
+  padding: 10px;
   position: relative;
 }
 
 .numericDigits {
   align-items: center;
   display: flex;
-  gap: 5px;
-  height: 72px;
+  gap: 10px;
+  height: 68px;
+  justify-content: center;
+  min-width: 0;
 }
 
 .segmentDigit {
+  flex: 0 0 34px;
   display: block;
-  height: 68px;
+  height: 64px;
   position: relative;
-  width: 36px;
+  width: 34px;
 
   i {
     background: #231f10;
@@ -159,17 +170,17 @@
   clip-path: polygon(10% 0, 90% 0, 100% 50%, 90% 100%, 10% 100%, 0 50%);
   height: 6px;
   left: 5px;
-  width: 26px;
+  width: 24px;
 }
 .segmentA { top: 0; }
-.segmentG { top: 31px; }
+.segmentG { top: 29px; }
 .segmentD { bottom: 0; }
 .segmentB,
 .segmentC,
 .segmentE,
 .segmentF {
   clip-path: polygon(0 10%, 50% 0, 100% 10%, 100% 90%, 50% 100%, 0 90%);
-  height: 29px;
+  height: 27px;
   width: 6px;
 }
 .segmentB { right: 1px; top: 4px; }
@@ -178,23 +189,29 @@
 .segmentF { left: 1px; top: 4px; }
 
 .decimalPoint {
-  align-self: flex-end;
-  background: #231f10;
   border-radius: 1px;
-  box-shadow: none;
+  bottom: 0;
   height: 6px;
-  margin: 0 -1px 2px -2px;
+  right: -8px;
   width: 6px;
+}
+
+.numericMeta {
+  align-items: flex-end;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-width: 0;
+  padding: 0 2px 1px 0;
 }
 
 .numericUnit,
 .numericLabel {
   color: #373019;
   font-family: var(--font-geist-mono), monospace;
-  position: absolute;
 }
-.numericUnit { bottom: 18px; font-size: 14px; right: 21px; }
-.numericLabel { font-size: 7px; letter-spacing: .12em; right: 16px; top: 16px; }
+.numericUnit { font-size: 17px; line-height: 1; }
+.numericLabel { font-size: 7px; letter-spacing: .1em; line-height: 1; }
 
 .lcdModule {
   background: #171817;
@@ -237,24 +254,36 @@
   border: 1px solid #28200e;
   box-shadow: inset 2px 3px 8px rgba(54, 40, 10, .58), 0 0 11px rgba(225, 177, 52, .13);
   color: #2a2411;
-  font-family: var(--font-geist-mono), monospace;
-  font-size: clamp(11px, 2.3vw, 18px);
-  font-weight: 650;
-  letter-spacing: .09em;
-  line-height: 1.65;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
   overflow: hidden;
-  padding: 10px 13px 8px;
+  padding: 11px 13px;
   position: relative;
-  text-shadow: 1px 0 rgba(42, 36, 17, .2);
-  white-space: pre;
+}
 
-  &::after {
-    background-image: radial-gradient(rgba(45, 36, 14, .18) .5px, transparent .7px);
-    background-size: 3px 3px;
-    content: '';
-    inset: 0;
-    pointer-events: none;
-    position: absolute;
+.lcdLine {
+  display: grid;
+  gap: 2px;
+  grid-template-columns: repeat(16, minmax(0, 1fr));
+}
+
+.lcdCharacter {
+  aspect-ratio: 5 / 7;
+  display: grid;
+  gap: 1px;
+  grid-template-columns: repeat(5, 1fr);
+  grid-template-rows: repeat(7, 1fr);
+
+  i {
+    background: rgba(42, 34, 13, .065);
+    border-radius: 1px;
+    display: block;
+  }
+
+  .lcdPixelOn {
+    background: #2b230d;
+    box-shadow: inset 0 0 0 .4px rgba(0, 0, 0, .22);
   }
 }
 
@@ -275,70 +304,145 @@
     color: #262312;
     text-shadow: none;
   }
+
+  .lcdCharacter i { background: rgba(27, 24, 11, .04); }
+  .lcdCharacter .lcdPixelOn { background: rgba(28, 25, 12, .72); }
 }
 
 .electricalControl {
   align-items: center;
   display: flex;
   flex-direction: column;
-  gap: 11px;
+  gap: 13px;
 }
 
 .electricalButton {
-  background: #151615;
-  border: 1px solid #3c3d3b;
-  border-radius: 7px;
-  box-shadow: 0 3px 0 #080908, inset 0 0 0 3px #0f100f;
+  align-items: center;
+  background: transparent;
+  border: 0;
+  border-radius: 50%;
   cursor: pointer;
-  height: 94px;
-  padding: 12px;
-  width: 94px;
+  display: flex;
+  height: 92px;
+  justify-content: center;
+  padding: 0;
+  position: relative;
+  -webkit-tap-highlight-color: transparent;
+  width: 92px;
+
+  &::before {
+    background: #090a09;
+    border: 1px solid #2a2c29;
+    border-radius: 50%;
+    box-shadow: inset 0 5px 10px rgba(0, 0, 0, .95), 0 1px 0 rgba(255, 255, 255, .055);
+    content: '';
+    inset: 3px;
+    position: absolute;
+  }
+
+  &:hover .buttonCap { filter: brightness(1.08); }
+
+  &:focus-visible {
+    outline: 2px solid color-mix(in srgb, var(--signal-color) 62%, white);
+    outline-offset: 4px;
+  }
 }
 
 .buttonCollar {
   align-items: center;
-  background: #31322f;
-  border: 1px solid #0a0a0a;
+  background:
+    conic-gradient(from 210deg, #171817, #555753 12%, #262825 28%, #777a74 44%, #1a1b1a 66%, #4a4c48 84%, #171817);
+  border: 1px solid #080908;
   border-radius: 50%;
-  box-shadow: inset 0 0 0 5px #111210, 0 3px 0 #080908;
+  box-shadow: 0 7px 9px rgba(0, 0, 0, .58), inset 0 1px 1px rgba(255, 255, 255, .2), inset 0 -2px 3px rgba(0, 0, 0, .72);
   display: flex;
-  height: 67px;
+  height: 76px;
   justify-content: center;
-  width: 67px;
+  position: relative;
+  width: 76px;
+  z-index: 1;
+
+  &::before {
+    background: #0a0b0a;
+    border: 1px solid rgba(0, 0, 0, .85);
+    border-radius: 50%;
+    box-shadow: inset 0 5px 8px rgba(0, 0, 0, .9), 0 1px 0 rgba(255, 255, 255, .12);
+    content: '';
+    inset: 8px;
+    position: absolute;
+  }
 }
 
 .buttonCap {
-  background: color-mix(in srgb, var(--signal-color) 72%, #20211f);
-  border: 1px solid rgba(0, 0, 0, .6);
+  background:
+    radial-gradient(circle at 36% 27%, rgba(255, 255, 255, .19), transparent 25%),
+    linear-gradient(145deg, color-mix(in srgb, var(--signal-color) 58%, #3b3d38), color-mix(in srgb, var(--signal-color) 36%, #101110));
+  border: 1px solid color-mix(in srgb, var(--signal-color) 24%, #060706);
   border-radius: 50%;
-  box-shadow: inset 0 0 0 5px color-mix(in srgb, var(--signal-color) 58%, #171817), inset 0 -5px 8px rgba(0, 0, 0, .22), 0 3px 0 #080908;
+  box-shadow:
+    inset 0 2px 2px rgba(255, 255, 255, .12),
+    inset 0 -6px 9px rgba(0, 0, 0, .42),
+    0 7px 0 color-mix(in srgb, var(--signal-color) 18%, #080908),
+    0 10px 8px rgba(0, 0, 0, .7);
   display: block;
-  height: 48px;
+  height: 50px;
   position: relative;
-  transform: translateY(-1px);
-  transition: box-shadow .1s ease, filter .1s ease, transform .1s ease;
-  width: 48px;
+  transform: translateY(-3px);
+  transition: box-shadow .13s ease, filter .13s ease, transform .13s ease;
+  width: 50px;
+  z-index: 1;
 
+  &::before {
+    border: 1px solid rgba(255, 255, 255, .09);
+    border-radius: 50%;
+    content: '';
+    inset: 5px;
+    position: absolute;
+  }
 }
 
 .electricalButtonActive .buttonCap {
-  box-shadow: inset 0 5px 9px rgba(0, 0, 0, .35), inset 0 0 0 5px color-mix(in srgb, var(--signal-color) 48%, #151615);
-  filter: brightness(.9);
+  background:
+    radial-gradient(circle at 38% 30%, rgba(255, 255, 255, .45), transparent 27%),
+    linear-gradient(145deg, color-mix(in srgb, var(--signal-color) 92%, white), color-mix(in srgb, var(--signal-color) 74%, #171817));
+  box-shadow:
+    inset 0 1px 2px rgba(255, 255, 255, .38),
+    inset 0 -5px 8px rgba(0, 0, 0, .2),
+    0 2px 0 color-mix(in srgb, var(--signal-color) 22%, #080908),
+    0 0 15px color-mix(in srgb, var(--signal-color) 32%, transparent);
+  filter: brightness(.94);
   transform: translateY(3px);
 }
 
 .electricalLabel {
+  align-items: center;
   background: #0e0f0e;
   border: 1px solid #2c2e2c;
   border-radius: 2px;
   box-shadow: inset 1px 1px 3px rgba(0, 0, 0, .7);
   color: #b9bbb7;
+  display: grid;
   font-size: 10px;
   font-weight: 650;
+  gap: 7px;
+  grid-template-columns: 5px 1fr;
   letter-spacing: .1em;
-  min-width: 72px;
-  padding: 5px 8px;
+  min-width: 76px;
+  padding: 6px 9px;
   text-align: center;
+
+  i {
+    background: #333632;
+    border-radius: 50%;
+    box-shadow: inset 0 1px 1px rgba(0, 0, 0, .75);
+    height: 5px;
+    width: 5px;
+  }
+}
+
+.electricalControlActive .electricalLabel i {
+  background: var(--signal-color);
+  box-shadow: 0 0 6px color-mix(in srgb, var(--signal-color) 55%, transparent);
 }
 
 .progressControl { width: 100%; }
@@ -403,10 +507,10 @@
 }
 
 .steppedSelector {
-  background: #0b0c0b;
-  border: 1px solid #292b29;
+  background: linear-gradient(180deg, #292b29 0, #191b19 9%, #101110 100%);
+  border: 1px solid #343634;
   border-radius: 5px;
-  box-shadow: inset 3px 4px 8px rgba(0, 0, 0, .84), 1px 1px 0 rgba(255, 255, 255, .04);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, .08), inset 0 -5px 9px rgba(0, 0, 0, .32), 0 4px 8px rgba(0, 0, 0, .38);
   padding: 9px 11px 8px;
 }
 
@@ -414,7 +518,7 @@
   background: #050605;
   border: 1px solid #242624;
   border-radius: 4px;
-  box-shadow: inset 2px 3px 5px #000;
+  box-shadow: inset 2px 4px 7px #000, 0 1px 0 rgba(255, 255, 255, .055);
   height: 34px;
   padding: 3px;
   position: relative;
@@ -422,10 +526,10 @@
 
 .selectorThumb {
   align-items: center;
-  background: #30322f;
-  border: 1px solid #41433f;
+  background: linear-gradient(180deg, #41433f, #363835 47%, #2b2d2b);
+  border: 1px solid #494c47;
   border-radius: 3px;
-  box-shadow: 0 3px 0 #0a0b0a, inset 0 -2px 0 rgba(0, 0, 0, .22);
+  box-shadow: 0 4px 0 #0a0b0a, 0 7px 9px rgba(0, 0, 0, .58), inset 0 1px 0 rgba(255, 255, 255, .075), inset 0 -2px 0 rgba(0, 0, 0, .28);
   display: flex;
   height: 26px;
   justify-content: center;
@@ -438,7 +542,8 @@
   z-index: 1;
 
   i {
-    background: #171817;
+    background: rgba(12, 13, 12, .68);
+    box-shadow: 1px 0 rgba(255, 255, 255, .075);
     height: 12px;
     margin: 0 2px;
     width: 1px;
@@ -482,6 +587,7 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
+  .meterNeedleShadow,
   .meterNeedle,
   .buttonCap,
   .progressFill { transition: none; }
