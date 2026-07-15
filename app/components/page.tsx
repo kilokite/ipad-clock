@@ -4,10 +4,12 @@ import Link from 'next/link'
 import { useState } from 'react'
 import {
   Ammeter,
+  EdgeDrawer,
   ElectricalButton,
   InsetProgress,
   LCD1602A,
   NumericLCD,
+  PanelDropdown,
   SteppedSelector,
   TapeButton,
 } from '@/lib/components/InstrumentControls'
@@ -15,6 +17,9 @@ import styles from './page.module.scss'
 
 const inputSources = ['LINE', 'USB', 'BT'] as const
 const outputModes = ['A类', 'AB类', '直通'] as const
+const tapeTypes = ['NORMAL TYPE I', 'CHROME TYPE II', 'METAL TYPE IV'] as const
+const noiseReductionModes = ['OFF', 'DOLBY B', 'DOLBY C'] as const
+const monitorSources = ['SOURCE', 'TAPE', 'AUTO'] as const
 type TransportMode = 'stop' | 'play' | 'record' | 'rewind' | 'fast-forward'
 
 export default function ComponentsPage() {
@@ -28,10 +33,20 @@ export default function ComponentsPage() {
   const [transport, setTransport] = useState<TransportMode>('stop')
   const [paused, setPaused] = useState(false)
   const [autoReverse, setAutoReverse] = useState(true)
+  const [tapeType, setTapeType] = useState<(typeof tapeTypes)[number]>('CHROME TYPE II')
+  const [noiseReduction, setNoiseReduction] = useState<(typeof noiseReductionModes)[number]>('DOLBY B')
+  const [monitorSource, setMonitorSource] = useState<(typeof monitorSources)[number]>('SOURCE')
+  const [drawerOpen, setDrawerOpen] = useState(false)
+  const [drawerEdge, setDrawerEdge] = useState<'right' | 'bottom'>('right')
 
   const outputLevel = power && !mute ? level : 0
   const displayCurrent = power ? bias : 0
   const rightLevel = Math.max(0, Math.min(100, outputLevel - 7))
+
+  function openDrawer(edge: 'right' | 'bottom') {
+    setDrawerEdge(edge)
+    setDrawerOpen(true)
+  }
 
   return (
     <main className={styles.page}>
@@ -101,23 +116,77 @@ export default function ComponentsPage() {
             <div className={styles.transportGroup}>
               <span className={styles.controlLabel}>MECHANISM</span>
               <div className={styles.tapeButtonBank}>
-                <TapeButton label="倒带" icon="rewind" color="blue" pressed={transport === 'rewind'} onClick={() => { setTransport('rewind'); setPaused(false) }} />
-                <TapeButton label="停止" icon="stop" color="ivory" pressed={transport === 'stop'} onClick={() => { setTransport('stop'); setPaused(false) }} />
-                <TapeButton label="播放" icon="play" color="green" pressed={transport === 'play'} onClick={() => { setTransport('play'); setPaused(false) }} />
-                <TapeButton label="录音" icon="record" color="red" pressed={transport === 'record'} onClick={() => { setTransport('record'); setPaused(false) }} />
-                <TapeButton label="快进" icon="fast-forward" color="blue" pressed={transport === 'fast-forward'} onClick={() => { setTransport('fast-forward'); setPaused(false) }} />
+                <TapeButton label="倒带" icon="rewind" color="blue" diagonalLight pressed={transport === 'rewind'} onClick={() => { setTransport('rewind'); setPaused(false) }} />
+                <TapeButton label="停止" icon="stop" color="ivory" diagonalLight pressed={transport === 'stop'} onClick={() => { setTransport('stop'); setPaused(false) }} />
+                <TapeButton label="播放" icon="play" color="green" diagonalLight pressed={transport === 'play'} onClick={() => { setTransport('play'); setPaused(false) }} />
+                <TapeButton label="录音" icon="record" color="red" diagonalLight pressed={transport === 'record'} onClick={() => { setTransport('record'); setPaused(false) }} />
+                <TapeButton label="快进" icon="fast-forward" color="blue" diagonalLight pressed={transport === 'fast-forward'} onClick={() => { setTransport('fast-forward'); setPaused(false) }} />
               </div>
             </div>
             <div className={styles.transportGroup}>
               <span className={styles.controlLabel}>FUNCTION</span>
               <div className={styles.tapeButtonBank}>
-                <TapeButton label="PAUSE" shape="wide" color="yellow" pressed={paused} onClick={() => setPaused(!paused)} />
-                <TapeButton label="AUTO REVERSE" shape="wide" color="blue" pressed={autoReverse} onClick={() => setAutoReverse(!autoReverse)} />
-                <TapeButton label="EJECT" shape="wide" color="orange" onClick={() => { setTransport('stop'); setPaused(false) }} />
+                <TapeButton label="PAUSE" shape="wide" color="yellow" diagonalLight pressed={paused} onClick={() => setPaused(!paused)} />
+                <TapeButton label="AUTO REVERSE" shape="wide" color="blue" diagonalLight pressed={autoReverse} onClick={() => setAutoReverse(!autoReverse)} />
+                <TapeButton label="EJECT" shape="wide" color="orange" diagonalLight onClick={() => { setTransport('stop'); setPaused(false) }} />
               </div>
             </div>
           </div>
         </div>
+
+        <div className={styles.interfaceDeck}>
+          <div className={styles.uiModule}>
+            <div className={styles.uiModuleHeader}>
+              <div><span>MECHANICAL SELECT</span><small>DETENT MENU SYSTEM</small></div>
+              <i aria-hidden="true" />
+            </div>
+            <div className={styles.dropdownShowcase}>
+              <PanelDropdown label="TAPE TYPE" options={tapeTypes} value={tapeType} onChange={setTapeType} />
+              <PanelDropdown label="NOISE REDUCTION" options={noiseReductionModes} value={noiseReduction} onChange={setNoiseReduction} />
+            </div>
+          </div>
+
+          <div className={styles.uiModule}>
+            <div className={styles.uiModuleHeader}>
+              <div><span>EDGE DIALOG</span><small>SLIDE-OUT SERVICE PANEL</small></div>
+              <i aria-hidden="true" />
+            </div>
+            <div className={styles.edgeLaunchers}>
+              <TapeButton label="RIGHT PANEL" shape="wide" color="blue" diagonalLight onClick={() => openDrawer('right')} />
+              <TapeButton label="BOTTOM SHEET" shape="wide" color="orange" diagonalLight onClick={() => openDrawer('bottom')} />
+              <div className={styles.edgeHint}>
+                <span>ACTIVE PROFILE</span>
+                <strong>{tapeType}</strong>
+                <small>{noiseReduction}</small>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <EdgeDrawer
+          open={drawerOpen}
+          edge={drawerEdge}
+          title="TAPE CALIBRATION"
+          description={`${drawerEdge.toUpperCase()} EDGE PANEL`}
+          onClose={() => setDrawerOpen(false)}
+          footer={(
+            <div className={styles.drawerActions}>
+              <TapeButton label="CANCEL" shape="wide" color="ivory" onClick={() => setDrawerOpen(false)} />
+              <TapeButton label="APPLY" shape="wide" color="green" diagonalLight onClick={() => setDrawerOpen(false)} />
+            </div>
+          )}
+        >
+          <div className={styles.drawerReadout}>
+            <span>ACTIVE PROFILE</span>
+            <strong>{tapeType}</strong>
+            <small>{noiseReduction} · {monitorSource}</small>
+          </div>
+          <div className={styles.drawerControls}>
+            <PanelDropdown label="MONITOR SOURCE" options={monitorSources} value={monitorSource} onChange={setMonitorSource} />
+            <InsetProgress label="CALIBRATION LEVEL" value={76} color="amber" segmented />
+          </div>
+          <p className={styles.drawerNote}>Settings are held in local deck memory until the APPLY key is pressed.</p>
+        </EdgeDrawer>
 
       </section>
     </main>

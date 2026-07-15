@@ -1,6 +1,7 @@
 'use client'
 
 import classNames from 'classnames'
+import { useEffect, useId, useRef, useState } from 'react'
 import type { CSSProperties, ReactNode } from 'react'
 import css from './css/InstrumentControls.module.scss'
 
@@ -290,6 +291,7 @@ export function TapeButton({
   icon,
   color = 'ivory',
   shape = 'square',
+  diagonalLight = false,
   pressed,
   disabled = false,
   onClick,
@@ -298,6 +300,7 @@ export function TapeButton({
   icon?: TapeButtonIcon
   color?: TapeButtonColor
   shape?: 'square' | 'wide'
+  diagonalLight?: boolean
   pressed?: boolean
   disabled?: boolean
   onClick: () => void
@@ -308,6 +311,7 @@ export function TapeButton({
       className={classNames(
         css.tapeButton,
         shape === 'wide' && css.tapeButtonWide,
+        diagonalLight && css.tapeButtonDiagonalLight,
         pressed && css.tapeButtonPressed,
       )}
       style={{ '--button-color': tapeButtonColors[color] } as CSSProperties}
@@ -320,6 +324,145 @@ export function TapeButton({
         {icon ? <TapeButtonGlyph icon={icon} /> : <span className={css.tapeButtonText}>{label}</span>}
       </span>
     </button>
+  )
+}
+
+export function PanelDropdown<T extends string>({
+  label,
+  options,
+  value,
+  onChange,
+  disabled = false,
+}: {
+  label: string
+  options: readonly T[]
+  value: T
+  onChange: (value: T) => void
+  disabled?: boolean
+}) {
+  const [open, setOpen] = useState(false)
+  const listboxId = useId()
+
+  return (
+    <div
+      className={classNames(css.panelDropdown, open && css.panelDropdownOpen)}
+      onBlur={(event) => {
+        if (!event.currentTarget.contains(event.relatedTarget)) setOpen(false)
+      }}
+      onKeyDown={(event) => {
+        if (event.key === 'Escape') setOpen(false)
+      }}
+    >
+      <span className={css.panelDropdownLabel}>{label}</span>
+      <div className={css.panelDropdownControl}>
+        <button
+          type="button"
+          className={css.panelDropdownTrigger}
+          aria-label={`${label}：${value}`}
+          aria-controls={listboxId}
+          aria-expanded={open}
+          aria-haspopup="listbox"
+          disabled={disabled}
+          onClick={() => setOpen(!open)}
+          onKeyDown={(event) => {
+            if (event.key === 'ArrowDown') {
+              event.preventDefault()
+              setOpen(true)
+            }
+          }}
+        >
+          <span className={css.panelDropdownValue}>{value}</span>
+          <span className={css.panelDropdownHandle} aria-hidden="true"><i /><i /><i /></span>
+        </button>
+        <div
+          className={css.panelDropdownMenu}
+          id={listboxId}
+          role="listbox"
+          aria-label={label}
+          aria-hidden={!open}
+        >
+          {options.map((option) => (
+            <button
+              type="button"
+              role="option"
+              aria-selected={option === value}
+              tabIndex={open ? 0 : -1}
+              onClick={() => {
+                onChange(option)
+                setOpen(false)
+              }}
+              key={option}
+            >
+              <i aria-hidden="true" />
+              <span>{option}</span>
+            </button>
+          ))}
+        </div>
+      </div>
+    </div>
+  )
+}
+
+export function EdgeDrawer({
+  open,
+  title,
+  description,
+  edge = 'right',
+  onClose,
+  children,
+  footer,
+}: {
+  open: boolean
+  title: string
+  description?: string
+  edge?: 'right' | 'bottom'
+  onClose: () => void
+  children: ReactNode
+  footer?: ReactNode
+}) {
+  const titleId = useId()
+  const closeButtonRef = useRef<HTMLButtonElement>(null)
+  const previousFocusRef = useRef<HTMLElement | null>(null)
+
+  useEffect(() => {
+    if (!open) return
+
+    previousFocusRef.current = document.activeElement instanceof HTMLElement ? document.activeElement : null
+    const animationFrame = requestAnimationFrame(() => closeButtonRef.current?.focus())
+
+    return () => {
+      cancelAnimationFrame(animationFrame)
+      previousFocusRef.current?.focus()
+    }
+  }, [open])
+
+  return (
+    <div
+      className={classNames(css.edgeDrawerLayer, open && css.edgeDrawerLayerOpen)}
+      aria-hidden={!open}
+      inert={!open}
+      onKeyDown={(event) => {
+        if (event.key === 'Escape') onClose()
+      }}
+    >
+      <button className={css.edgeDrawerBackdrop} type="button" tabIndex={-1} aria-hidden="true" onClick={onClose} />
+      <section
+        className={classNames(css.edgeDrawer, edge === 'bottom' && css.edgeDrawerBottom)}
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby={titleId}
+      >
+        <header className={css.edgeDrawerHeader}>
+          <div>
+            <span>{description ?? 'SYSTEM PANEL'}</span>
+            <h2 id={titleId}>{title}</h2>
+          </div>
+          <button ref={closeButtonRef} type="button" aria-label="关闭弹窗" onClick={onClose}><i /><i /></button>
+        </header>
+        <div className={css.edgeDrawerBody}>{children}</div>
+        {footer && <footer className={css.edgeDrawerFooter}>{footer}</footer>}
+      </section>
+    </div>
   )
 }
 
