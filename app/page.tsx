@@ -12,6 +12,7 @@ import Button from "@/lib/components/Button";
 import Panel, { Hole } from "@/lib/components/Panel";
 import StatusButton from "@/lib/components/StatusButton";
 import CRTDisplay, { ProgressBar } from "@/lib/components/CRTDisplay";
+import Link from "next/link";
 function Li({id,index,children}:{id:number,index:number,children:any}){
   return <li className={id==index?styles.select:''}>{children}</li>
 }
@@ -80,6 +81,9 @@ export default function Home() {
   return (
     <FullScreen handle={handle} className="">
       <div className={styles.container}>
+        <Link href="/components" className={styles.componentLink}>
+          控件陈列室 <span aria-hidden="true">↗</span>
+        </Link>
         <div className={styles.timeContainer}>
           <div className={styles.menu}>
             <PilotLamp text="Power Input" status={status} color="@green" className={styles.pilotLamp} panelStyle={2}></PilotLamp>
