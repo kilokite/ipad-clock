@@ -1,6 +1,7 @@
 
 'use client'
 import Image from "next/image";
+import Link from "next/link";
 import { use, useState,useEffect } from "react";
 import styles from "./page.module.scss";
 import Altimeter, { NumberBars } from "@/lib/components/Altimeter";
@@ -104,7 +105,13 @@ export default function Home() {
           <Button onClick={()=>setStatus(!status)} color="@green">Switch</Button> */}
           <CRT handle={handle}></CRT>
         </Panel>
-        <div> <LibLogo className={styles.logo}></LibLogo> <Button onClick={()=>{}}>Success</Button></div>
+        <div className={styles.footer}>
+          <Button onClick={()=>{}}>Success</Button>
+          <Link className={styles.componentLink} href="/components">
+            组件库 <span aria-hidden="true">→</span>
+          </Link>
+          <LibLogo className={styles.logo}></LibLogo>
+        </div>
       </div>
     </FullScreen>
   );

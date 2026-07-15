@@ -54,6 +54,27 @@
   display: block;
   margin-left: auto;
 }
+.footer {
+  align-items: center;
+  display: flex;
+  gap: 12px;
+}
+.componentLink {
+  background: #111;
+  border: 1px solid #292929;
+  border-radius: 4px;
+  box-shadow: inset 1px 1px 4px rgba(0, 0, 0, .7), 1px 1px 0 rgba(255, 255, 255, .05);
+  color: #9da198;
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: .08em;
+  padding: 10px 13px;
+
+  span {
+    color: #b7d879;
+    margin-left: 8px;
+  }
+}
 .buttonImg {
   width: 40px;
   height: 40px;
