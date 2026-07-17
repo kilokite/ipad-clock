@@ -1,0 +1,6 @@
+export type SignalColor = 'green' | 'amber' | 'red'
+export type TapeButtonColor = 'red' | 'orange' | 'yellow' | 'green' | 'blue' | 'ivory'
+export type TapeButtonIcon = 'record' | 'play' | 'stop' | 'pause' | 'rewind' | 'fast-forward' | 'eject'
+export type PanelButtonTone = 'neutral' | 'green' | 'amber' | 'red'
+export type PanelButtonIcon = 'check' | 'reset' | 'trash' | 'more' | 'lock'
+export type PanelControlFinish = 'mechanical' | 'subtle'
