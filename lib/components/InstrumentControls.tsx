@@ -8,6 +8,8 @@ import css from './css/InstrumentControls.module.scss'
 type SignalColor = 'green' | 'amber' | 'red'
 type TapeButtonColor = 'red' | 'orange' | 'yellow' | 'green' | 'blue' | 'ivory'
 type TapeButtonIcon = 'record' | 'play' | 'stop' | 'pause' | 'rewind' | 'fast-forward' | 'eject'
+type PanelButtonTone = 'neutral' | 'green' | 'amber' | 'red'
+type PanelButtonIcon = 'check' | 'reset' | 'trash' | 'more' | 'lock'
 
 const signalColors: Record<SignalColor, string> = {
   green: '#b7ff00',
@@ -22,6 +24,13 @@ const tapeButtonColors: Record<TapeButtonColor, string> = {
   green: '#5c925c',
   blue: '#547aa1',
   ivory: '#c7c1a5',
+}
+
+const panelButtonColors: Record<PanelButtonTone, string> = {
+  neutral: '#777c74',
+  green: '#8fad62',
+  amber: '#b78947',
+  red: '#ae5a4d',
 }
 
 function clamp(value: number, min: number, max: number) {
@@ -530,6 +539,158 @@ export function SteppedSelector<T extends string>({
             </button>
           ))}
         </div>
+      </div>
+    </div>
+  )
+}
+
+function PanelButtonGlyph({ icon }: { icon: PanelButtonIcon }) {
+  const glyphs: Record<PanelButtonIcon, ReactNode> = {
+    check: <path d="m6.5 12.5 3.6 3.6 7.8-8.2" />,
+    reset: <><path d="M7.2 9.2A7 7 0 1 1 6 14" /><path d="M7.2 5.8v3.7H3.5" /></>,
+    trash: <><path d="M7.4 8.2h9.2l-.6 10H8Z" /><path d="M5.8 8.2h12.4M9 5.5h6" /></>,
+    more: <><circle cx="6" cy="12" r="1.25" /><circle cx="12" cy="12" r="1.25" /><circle cx="18" cy="12" r="1.25" /></>,
+    lock: <><rect x="6.5" y="10.5" width="11" height="8" rx="1" /><path d="M9 10.5V8a3 3 0 0 1 6 0v2.5" /></>,
+  }
+
+  return <svg className={css.panelButtonIcon} viewBox="0 0 24 24" aria-hidden="true">{glyphs[icon]}</svg>
+}
+
+export function PanelButton({
+  children,
+  icon,
+  tone = 'neutral',
+  finish = 'mechanical',
+  active,
+  compact = false,
+  disabled = false,
+  onClick,
+}: {
+  children: ReactNode
+  icon?: PanelButtonIcon
+  tone?: PanelButtonTone
+  finish?: 'mechanical' | 'classic' | 'subtle'
+  active?: boolean
+  compact?: boolean
+  disabled?: boolean
+  onClick: () => void
+}) {
+  return (
+    <button
+      type="button"
+      className={classNames(
+        css.panelButton,
+        finish === 'classic' && css.panelButtonClassic,
+        finish === 'subtle' && css.panelButtonSubtle,
+        compact && css.panelButtonCompact,
+        active && css.panelButtonActive,
+      )}
+      style={{ '--panel-button-color': panelButtonColors[tone] } as CSSProperties}
+      aria-pressed={active === undefined ? undefined : active}
+      disabled={disabled}
+      onClick={onClick}
+    >
+      <span className={css.panelButtonCap}>
+        {icon && <PanelButtonGlyph icon={icon} />}
+        <span>{children}</span>
+      </span>
+    </button>
+  )
+}
+
+export function PanelToggle({
+  label,
+  description,
+  checked,
+  onChange,
+  disabled = false,
+}: {
+  label: string
+  description?: string
+  checked: boolean
+  onChange: (checked: boolean) => void
+  disabled?: boolean
+}) {
+  return (
+    <div className={classNames(css.panelToggle, disabled && css.panelControlDisabled)}>
+      <span className={css.panelControlCopy}>
+        <strong>{label}</strong>
+        {description && <small>{description}</small>}
+      </span>
+      <button
+        type="button"
+        className={classNames(css.panelToggleSwitch, checked && css.panelToggleSwitchOn)}
+        role="switch"
+        aria-label={label}
+        aria-checked={checked}
+        disabled={disabled}
+        onClick={() => onChange(!checked)}
+      >
+        <span><i /><i /><i /></span>
+      </button>
+    </div>
+  )
+}
+
+export function PanelCheckbox({
+  label,
+  description,
+  checked,
+  onChange,
+  disabled = false,
+}: {
+  label: string
+  description?: string
+  checked: boolean
+  onChange: (checked: boolean) => void
+  disabled?: boolean
+}) {
+  return (
+    <button
+      type="button"
+      className={classNames(css.panelCheckbox, checked && css.panelCheckboxChecked)}
+      role="checkbox"
+      aria-checked={checked}
+      disabled={disabled}
+      onClick={() => onChange(!checked)}
+    >
+      <span className={css.panelCheckboxBox} aria-hidden="true"><i /></span>
+      <span className={css.panelControlCopy}>
+        <strong>{label}</strong>
+        {description && <small>{description}</small>}
+      </span>
+    </button>
+  )
+}
+
+export function SegmentedButtons<T extends string>({
+  label,
+  options,
+  value,
+  onChange,
+}: {
+  label: string
+  options: readonly T[]
+  value: T
+  onChange: (value: T) => void
+}) {
+  return (
+    <div className={css.segmentedControl}>
+      <span className={css.segmentedLabel}>{label}</span>
+      <div className={css.segmentedButtons} role="radiogroup" aria-label={label}>
+        {options.map((option) => (
+          <button
+            type="button"
+            role="radio"
+            aria-checked={option === value}
+            className={classNames(option === value && css.segmentedButtonActive)}
+            onClick={() => onChange(option)}
+            key={option}
+          >
+            <i aria-hidden="true" />
+            <span>{option}</span>
+          </button>
+        ))}
       </div>
     </div>
   )

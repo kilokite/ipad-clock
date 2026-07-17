@@ -294,6 +294,13 @@
   padding-top: 14px;
 }
 
+.utilityDeck {
+  display: grid;
+  gap: 14px;
+  grid-template-columns: 1fr;
+  padding-top: 14px;
+}
+
 .uiModule {
   min-width: 0;
   padding: 20px 22px;
@@ -348,6 +355,83 @@
   display: flex;
   flex-wrap: wrap;
   gap: 10px;
+}
+
+.commandReadout {
+  align-items: center;
+  background: #0b0c0b;
+  border: 1px solid #292c29;
+  border-radius: 3px;
+  box-shadow: inset 1px 2px 5px rgba(0, 0, 0, .75);
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 14px;
+  min-height: 34px;
+  padding: 7px 11px;
+
+  span,
+  output {
+    font-family: var(--font-geist-mono), monospace;
+    font-size: 8px;
+    letter-spacing: .11em;
+  }
+
+  span { color: #555a54; }
+  output { color: #aab09f; }
+}
+
+.buttonShowcaseGrid {
+  display: grid;
+  gap: 12px;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.buttonStyleGroup {
+  background: #101210;
+  border: 1px solid #292c29;
+  border-radius: 4px;
+  box-shadow: inset 1px 2px 5px rgba(0, 0, 0, .5), 1px 1px 0 rgba(255, 255, 255, .025);
+  min-width: 0;
+  padding: 13px;
+
+  > header {
+    border-bottom: 1px solid #252825;
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 13px;
+    padding-bottom: 10px;
+
+    span {
+      color: #aeb2ab;
+      font-family: var(--font-geist-mono), monospace;
+      font-size: 9px;
+      font-weight: 650;
+      letter-spacing: .12em;
+    }
+
+    small {
+      color: #50554f;
+      font-family: var(--font-geist-mono), monospace;
+      font-size: 7px;
+      letter-spacing: .1em;
+      margin-top: 4px;
+    }
+  }
+}
+
+.buttonVariants {
+  align-items: flex-start;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 9px;
+}
+
+.commonControls {
+  display: grid;
+  gap: 10px;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+
+  > :last-child { align-self: end; }
 }
 
 .edgeHint {
@@ -436,7 +520,10 @@
   .instrumentDeck { grid-template-columns: 1fr; }
   .displayRow { grid-template-columns: minmax(220px, .8fr) minmax(300px, 1.2fr); }
   .transportControls { grid-template-columns: 1fr; }
-  .interfaceDeck { grid-template-columns: 1fr; }
+  .interfaceDeck,
+  .utilityDeck { grid-template-columns: 1fr; }
+  .buttonShowcaseGrid { grid-template-columns: 1fr; }
+  .commonControls { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 }
 
 @media (max-width: 680px) {
@@ -445,6 +532,7 @@
   .displayRow,
   .controlDeck { grid-template-columns: 1fr; }
   .dropdownShowcase { grid-template-columns: 1fr; min-height: 340px; }
+  .commonControls { grid-template-columns: 1fr; }
   .displayRow > * { margin-left: auto; margin-right: auto; }
   .header { grid-template-columns: 1fr auto 34px; }
 }

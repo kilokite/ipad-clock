@@ -9,7 +9,11 @@ import {
   InsetProgress,
   LCD1602A,
   NumericLCD,
+  PanelButton,
+  PanelCheckbox,
   PanelDropdown,
+  PanelToggle,
+  SegmentedButtons,
   SteppedSelector,
   TapeButton,
 } from '@/lib/components/InstrumentControls'
@@ -20,7 +24,41 @@ const outputModes = ['A类', 'AB类', '直通'] as const
 const tapeTypes = ['NORMAL TYPE I', 'CHROME TYPE II', 'METAL TYPE IV'] as const
 const noiseReductionModes = ['OFF', 'DOLBY B', 'DOLBY C'] as const
 const monitorSources = ['SOURCE', 'TAPE', 'AUTO'] as const
+const listeningZones = ['A', 'A + B', 'B'] as const
 type TransportMode = 'stop' | 'play' | 'record' | 'rewind' | 'fast-forward'
+type ButtonFinish = 'mechanical' | 'classic' | 'subtle'
+
+function ButtonStyleShowcase({
+  finish,
+  title,
+  description,
+  onCommand,
+}: {
+  finish: ButtonFinish
+  title: string
+  description: string
+  onCommand: (command: string) => void
+}) {
+  const command = (name: string) => () => onCommand(`${title} / ${name}`)
+
+  return (
+    <section className={styles.buttonStyleGroup} aria-label={`${title} 按钮样式`}>
+      <header>
+        <span>{title}</span>
+        <small>{description}</small>
+      </header>
+      <div className={styles.buttonVariants}>
+        <PanelButton finish={finish} onClick={command('DEFAULT')}>默认</PanelButton>
+        <PanelButton finish={finish} tone="green" icon="check" onClick={command('CONFIRM')}>确认</PanelButton>
+        <PanelButton finish={finish} tone="amber" icon="more" onClick={command('WARNING')}>注意</PanelButton>
+        <PanelButton finish={finish} tone="red" icon="trash" onClick={command('DANGER')}>危险</PanelButton>
+        <PanelButton finish={finish} active icon="check" onClick={command('ACTIVE')}>已选中</PanelButton>
+        <PanelButton finish={finish} compact icon="reset" onClick={command('COMPACT')}>紧凑</PanelButton>
+        <PanelButton finish={finish} icon="lock" disabled onClick={() => undefined}>已禁用</PanelButton>
+      </div>
+    </section>
+  )
+}
 
 export default function ComponentsPage() {
   const [power, setPower] = useState(true)
@@ -38,6 +76,11 @@ export default function ComponentsPage() {
   const [monitorSource, setMonitorSource] = useState<(typeof monitorSources)[number]>('SOURCE')
   const [drawerOpen, setDrawerOpen] = useState(false)
   const [drawerEdge, setDrawerEdge] = useState<'right' | 'bottom'>('right')
+  const [autoStandby, setAutoStandby] = useState(true)
+  const [loudness, setLoudness] = useState(false)
+  const [speakerProtect, setSpeakerProtect] = useState(true)
+  const [listeningZone, setListeningZone] = useState<(typeof listeningZones)[number]>('A')
+  const [commandStatus, setCommandStatus] = useState('CONTROL READY')
 
   const outputLevel = power && !mute ? level : 0
   const displayCurrent = power ? bias : 0
@@ -159,6 +202,37 @@ export default function ComponentsPage() {
                 <strong>{tapeType}</strong>
                 <small>{noiseReduction}</small>
               </div>
+            </div>
+          </div>
+        </div>
+
+        <div className={styles.utilityDeck}>
+          <div className={styles.uiModule}>
+            <div className={styles.uiModuleHeader}>
+              <div><span>GENERAL BUTTONS</span><small>DAILY COMMAND KEYS</small></div>
+              <i aria-hidden="true" />
+            </div>
+            <div className={styles.commandReadout} aria-live="polite">
+              <span>LAST COMMAND</span>
+              <output>{commandStatus}</output>
+            </div>
+            <div className={styles.buttonShowcaseGrid}>
+              <ButtonStyleShowcase finish="mechanical" title="MECHANICAL" description="RAISED INSTRUMENT KEY" onCommand={setCommandStatus} />
+              <ButtonStyleShowcase finish="classic" title="CLASSIC 2013" description="GLOSSY DESKTOP CONTROL" onCommand={setCommandStatus} />
+              <ButtonStyleShowcase finish="subtle" title="SUBTLE 2013" description="LOW-GLOSS COMPACT CONTROL" onCommand={setCommandStatus} />
+            </div>
+          </div>
+
+          <div className={styles.uiModule}>
+            <div className={styles.uiModuleHeader}>
+              <div><span>COMMON CONTROLS</span><small>SWITCH · CHECK · SEGMENT</small></div>
+              <i aria-hidden="true" />
+            </div>
+            <div className={styles.commonControls}>
+              <PanelToggle label="自动待机" description="20 MIN NO SIGNAL" checked={autoStandby} onChange={setAutoStandby} />
+              <PanelToggle label="响度补偿" description="LOW LEVEL CONTOUR" checked={loudness} onChange={setLoudness} />
+              <PanelCheckbox label="扬声器保护" description="OUTPUT RELAY GUARD" checked={speakerProtect} onChange={setSpeakerProtect} />
+              <SegmentedButtons label="SPEAKER ZONE" options={listeningZones} value={listeningZone} onChange={setListeningZone} />
             </div>
           </div>
         </div>
