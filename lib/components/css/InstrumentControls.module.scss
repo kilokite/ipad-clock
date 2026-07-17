@@ -1,6 +1,6 @@
 .ammeter {
   background: linear-gradient(180deg, #080808, #151515);
-  border: 1px solid #30302f;
+  border: 1px solid #303030;
   border-radius: 9px;
   box-shadow: inset 0 9px 17px rgba(0, 0, 0, .95), inset 0 -1px 0 rgba(255, 255, 255, .06), 0 5px 10px rgba(0, 0, 0, .42);
   padding: 20px;
@@ -36,7 +36,7 @@
 
 .meterBezel {
   background: linear-gradient(180deg, #050505, #161616);
-  border: 1px solid #343433;
+  border: 1px solid #343434;
   border-radius: 7px;
   box-shadow: inset 0 8px 14px rgba(0, 0, 0, .95), inset 0 0 0 5px #090909, 0 1px 0 rgba(255, 255, 255, .08);
   padding: 15px 14px 17px;
@@ -92,14 +92,14 @@
 }
 .meterNeedleShadow { fill: rgba(71, 49, 30, .2); }
 .meterNeedle { fill: #a75a50; }
-.meterHubOuter { fill: #171713; stroke: #080807; stroke-width: 2; }
+.meterHubOuter { fill: #151515; stroke: #080808; stroke-width: 2; }
 .meterHubInner { fill: #29251a; stroke: #7b6330; stroke-width: 1; }
 
 .numericLCD {
-  background: linear-gradient(145deg, #2b2c2a, #101110);
-  border: 1px solid #383a37;
+  background: linear-gradient(145deg, #2b2b2b, #101010);
+  border: 1px solid #383838;
   border-radius: 6px;
-  box-shadow: -1px -1px 0 rgba(255, 255, 255, .08), 4px 5px 9px rgba(0, 0, 0, .42), inset 0 0 0 3px #151615;
+  box-shadow: -1px -1px 0 rgba(255, 255, 255, .08), 4px 5px 9px rgba(0, 0, 0, .42), inset 0 0 0 3px #151515;
   padding: 15px 17px;
   position: relative;
   width: min(100%, 330px);
@@ -115,7 +115,7 @@
 
   span {
     background: #111;
-    border: 1px solid #42433f;
+    border: 1px solid #414141;
     border-radius: 50%;
     height: 5px;
     width: 5px;
@@ -214,10 +214,10 @@
 .numericLabel { font-size: 7px; letter-spacing: .1em; line-height: 1; }
 
 .lcdModule {
-  background: #171817;
-  border: 1px solid #343532;
+  background: #171717;
+  border: 1px solid #333333;
   border-radius: 6px;
-  box-shadow: -1px -1px 0 rgba(255, 255, 255, .06), 4px 5px 9px rgba(0, 0, 0, .42), inset 0 0 0 3px #101110;
+  box-shadow: -1px -1px 0 rgba(255, 255, 255, .06), 4px 5px 9px rgba(0, 0, 0, .42), inset 0 0 0 3px #101010;
   max-width: 430px;
   padding: 21px 24px 26px;
   position: relative;
@@ -225,8 +225,8 @@
 }
 
 .lcdScrew {
-  background: #0a0b0a;
-  border: 1px solid #40413e;
+  background: #0a0a0a;
+  border: 1px solid #3f3f3f;
   border-radius: 50%;
   box-shadow: inset 1px 1px 2px #000, 1px 1px 0 rgba(255, 255, 255, .04);
   height: 7px;
@@ -240,8 +240,8 @@
 }
 
 .lcdBezel {
-  background: linear-gradient(145deg, #171918, #050606);
-  border: 1px solid #262826;
+  background: linear-gradient(145deg, #181818, #060606);
+  border: 1px solid #262626;
   border-radius: 3px;
   box-shadow: 2px 3px 5px rgba(0, 0, 0, .55), inset 1px 1px 0 rgba(255, 255, 255, .06);
   padding: 9px 12px;
@@ -289,7 +289,7 @@
 
 .moduleMark {
   bottom: 7px;
-  color: #5a5d58;
+  color: #595959;
   font-family: var(--font-geist-mono), monospace;
   font-size: 7px;
   letter-spacing: .12em;
@@ -331,8 +331,8 @@
   width: 92px;
 
   &::before {
-    background: #090a09;
-    border: 1px solid #2a2c29;
+    background: #090909;
+    border: 1px solid #2a2a2a;
     border-radius: 50%;
     box-shadow: inset 0 5px 10px rgba(0, 0, 0, .95), 0 1px 0 rgba(255, 255, 255, .055);
     content: '';
@@ -351,8 +351,8 @@
 .buttonCollar {
   align-items: center;
   background:
-    conic-gradient(from 210deg, #171817, #555753 12%, #262825 28%, #777a74 44%, #1a1b1a 66%, #4a4c48 84%, #171817);
-  border: 1px solid #080908;
+    conic-gradient(from 210deg, #171717, #545454 12%, #262626 28%, #767676 44%, #1a1a1a 66%, #494949 84%, #171717);
+  border: 1px solid #080808;
   border-radius: 50%;
   box-shadow: 0 7px 9px rgba(0, 0, 0, .58), inset 0 1px 1px rgba(255, 255, 255, .2), inset 0 -2px 3px rgba(0, 0, 0, .72);
   display: flex;
@@ -363,7 +363,7 @@
   z-index: 1;
 
   &::before {
-    background: #0a0b0a;
+    background: #0a0a0a;
     border: 1px solid rgba(0, 0, 0, .85);
     border-radius: 50%;
     box-shadow: inset 0 5px 8px rgba(0, 0, 0, .9), 0 1px 0 rgba(255, 255, 255, .12);
@@ -376,13 +376,13 @@
 .buttonCap {
   background:
     radial-gradient(circle at 36% 27%, rgba(255, 255, 255, .19), transparent 25%),
-    linear-gradient(145deg, color-mix(in srgb, var(--signal-color) 58%, #3b3d38), color-mix(in srgb, var(--signal-color) 36%, #101110));
-  border: 1px solid color-mix(in srgb, var(--signal-color) 24%, #060706);
+    linear-gradient(145deg, color-mix(in srgb, var(--signal-color) 58%, #3a3a3a), color-mix(in srgb, var(--signal-color) 36%, #101010));
+  border: 1px solid color-mix(in srgb, var(--signal-color) 24%, #060606);
   border-radius: 50%;
   box-shadow:
     inset 0 2px 2px rgba(255, 255, 255, .12),
     inset 0 -6px 9px rgba(0, 0, 0, .42),
-    0 7px 0 color-mix(in srgb, var(--signal-color) 18%, #080908),
+    0 7px 0 color-mix(in srgb, var(--signal-color) 18%, #080808),
     0 10px 8px rgba(0, 0, 0, .7);
   display: block;
   height: 50px;
@@ -404,11 +404,11 @@
 .electricalButtonActive .buttonCap {
   background:
     radial-gradient(circle at 38% 30%, rgba(255, 255, 255, .45), transparent 27%),
-    linear-gradient(145deg, color-mix(in srgb, var(--signal-color) 92%, white), color-mix(in srgb, var(--signal-color) 74%, #171817));
+    linear-gradient(145deg, color-mix(in srgb, var(--signal-color) 92%, white), color-mix(in srgb, var(--signal-color) 74%, #171717));
   box-shadow:
     inset 0 1px 2px rgba(255, 255, 255, .38),
     inset 0 -5px 8px rgba(0, 0, 0, .2),
-    0 2px 0 color-mix(in srgb, var(--signal-color) 22%, #080908),
+    0 2px 0 color-mix(in srgb, var(--signal-color) 22%, #080808),
     0 0 15px color-mix(in srgb, var(--signal-color) 32%, transparent);
   filter: brightness(.94);
   transform: translateY(3px);
@@ -416,11 +416,11 @@
 
 .electricalLabel {
   align-items: center;
-  background: #0e0f0e;
-  border: 1px solid #2c2e2c;
+  background: #0e0e0e;
+  border: 1px solid #2c2c2c;
   border-radius: 2px;
   box-shadow: inset 1px 1px 3px rgba(0, 0, 0, .7);
-  color: #b9bbb7;
+  color: #b8b8b8;
   display: grid;
   font-size: 10px;
   font-weight: 650;
@@ -432,7 +432,7 @@
   text-align: center;
 
   i {
-    background: #333632;
+    background: #333333;
     border-radius: 50%;
     box-shadow: inset 0 1px 1px rgba(0, 0, 0, .75);
     height: 5px;
@@ -447,8 +447,8 @@
 
 .tapeButton {
   align-items: center;
-  background: linear-gradient(180deg, #070807, #151615);
-  border: 1px solid #2b2d2a;
+  background: linear-gradient(180deg, #070707, #151515);
+  border: 1px solid #2b2b2b;
   border-radius: 6px;
   box-shadow:
     inset 0 5px 9px rgba(0, 0, 0, .92),
@@ -479,7 +479,7 @@
   &:active:not(:disabled) .tapeButtonCap {
     box-shadow:
       inset 0 -4px 6px rgba(0, 0, 0, .27),
-      0 1px 0 color-mix(in srgb, var(--button-color) 35%, #080908);
+      0 1px 0 color-mix(in srgb, var(--button-color) 35%, #080808);
     transform: translateY(3px);
   }
 
@@ -509,13 +509,13 @@
       transparent 74%
     ),
     var(--button-color);
-  border: 1px solid color-mix(in srgb, var(--button-color) 52%, #171817);
+  border: 1px solid color-mix(in srgb, var(--button-color) 52%, #171717);
   border-radius: 4px;
   box-shadow:
     inset 0 -5px 7px rgba(0, 0, 0, .2),
-    0 6px 0 color-mix(in srgb, var(--button-color) 35%, #070807),
+    0 6px 0 color-mix(in srgb, var(--button-color) 35%, #070707),
     0 9px 8px rgba(0, 0, 0, .72);
-  color: color-mix(in srgb, var(--button-color) 20%, #121511);
+  color: color-mix(in srgb, var(--button-color) 20%, #121212);
   display: flex;
   height: 43px;
   justify-content: center;
@@ -532,14 +532,14 @@
     135deg,
     color-mix(in srgb, var(--button-color) 94%, white) 0%,
     var(--button-color) 48%,
-    color-mix(in srgb, var(--button-color) 92%, #090a09) 100%
+    color-mix(in srgb, var(--button-color) 92%, #090909) 100%
   );
 }
 
 .tapeButtonPressed .tapeButtonCap {
   box-shadow:
     inset 0 3px 5px rgba(0, 0, 0, .18),
-    0 1px 0 color-mix(in srgb, var(--button-color) 31%, #070807),
+    0 1px 0 color-mix(in srgb, var(--button-color) 31%, #070707),
     0 3px 4px rgba(0, 0, 0, .55);
   filter: brightness(.88) saturate(1.08);
   transform: translateY(3px);
@@ -574,7 +574,7 @@
 }
 
 .panelDropdownLabel {
-  color: #777c75;
+  color: #767676;
   display: block;
   font-family: var(--font-geist-mono), monospace;
   font-size: 8px;
@@ -588,14 +588,14 @@
 
 .panelDropdownTrigger {
   align-items: center;
-  background: linear-gradient(180deg, #292b28, #1a1c1a 48%, #111210);
-  border: 1px solid #3b3e39;
+  background: linear-gradient(180deg, #292929, #1a1a1a 48%, #111111);
+  border: 1px solid #3a3a3a;
   border-radius: 4px;
   box-shadow:
     inset 0 1px 0 rgba(255, 255, 255, .055),
     inset 0 -4px 6px rgba(0, 0, 0, .32),
     0 5px 7px rgba(0, 0, 0, .38);
-  color: #b7bab4;
+  color: #b6b6b6;
   cursor: pointer;
   display: grid;
   font-family: var(--font-geist-mono), monospace;
@@ -626,14 +626,14 @@
 .panelDropdownHandle {
   align-items: center;
   align-self: stretch;
-  background: linear-gradient(180deg, #353834, #20221f);
-  border-left: 1px solid #0a0b0a;
+  background: linear-gradient(180deg, #353535, #202020);
+  border-left: 1px solid #0a0a0a;
   box-shadow: inset 1px 0 0 rgba(255, 255, 255, .04);
   display: flex;
   justify-content: center;
 
   i {
-    background: #0b0c0b;
+    background: #0b0b0b;
     box-shadow: 1px 0 rgba(255, 255, 255, .055);
     height: 15px;
     margin: 0 2px;
@@ -642,13 +642,13 @@
 }
 
 .panelDropdownOpen .panelDropdownHandle {
-  background: linear-gradient(180deg, #252724, #181a18);
+  background: linear-gradient(180deg, #252525, #181818);
   box-shadow: inset 1px 2px 4px rgba(0, 0, 0, .62);
 }
 
 .panelDropdownMenu {
-  background: linear-gradient(180deg, #242623, #121411);
-  border: 1px solid #3b3e39;
+  background: linear-gradient(180deg, #242424, #121212);
+  border: 1px solid #3a3a3a;
   border-radius: 4px;
   box-shadow: 0 14px 24px rgba(0, 0, 0, .72), inset 0 1px 0 rgba(255, 255, 255, .045);
   left: 0;
@@ -667,8 +667,8 @@
     align-items: center;
     background: transparent;
     border: 0;
-    border-bottom: 1px solid #2a2d29;
-    color: #838881;
+    border-bottom: 1px solid #2a2a2a;
+    color: #828282;
     cursor: pointer;
     display: grid;
     font-family: var(--font-geist-mono), monospace;
@@ -682,7 +682,7 @@
     width: 100%;
 
     &:last-child { border-bottom: 0; }
-    &:hover { background: rgba(255, 255, 255, .035); color: #c1c4be; }
+    &:hover { background: rgba(255, 255, 255, .035); color: #c0c0c0; }
 
     &:focus-visible {
       background: rgba(183, 255, 0, .06);
@@ -691,7 +691,7 @@
     }
 
     > i {
-      background: #323631;
+      background: #323232;
       border-radius: 50%;
       box-shadow: inset 0 1px 1px rgba(0, 0, 0, .85);
       height: 5px;
@@ -699,7 +699,7 @@
     }
 
     &[aria-selected='true'] {
-      color: #d0d2cd;
+      color: #cfcfcf;
 
       > i {
         background: #b7ff00;
@@ -751,10 +751,10 @@
 .edgeDrawer {
   background:
     linear-gradient(90deg, rgba(255, 255, 255, .018), transparent 18%),
-    #151715;
-  border-left: 1px solid #393c38;
+    #151515;
+  border-left: 1px solid #393939;
   bottom: 0;
-  box-shadow: -18px 0 38px rgba(0, 0, 0, .64), inset 4px 0 0 #0c0d0c;
+  box-shadow: -18px 0 38px rgba(0, 0, 0, .64), inset 4px 0 0 #0c0c0c;
   display: flex;
   flex-direction: column;
   position: absolute;
@@ -765,7 +765,7 @@
   width: min(430px, calc(100vw - 18px));
 
   &::before {
-    background: repeating-linear-gradient(90deg, #2e312d 0 18px, #111310 18px 23px);
+    background: repeating-linear-gradient(90deg, #2e2e2e 0 18px, #111111 18px 23px);
     content: '';
     height: 4px;
     left: 22px;
@@ -778,8 +778,8 @@
 
 .edgeDrawerBottom {
   border-left: 0;
-  border-top: 1px solid #393c38;
-  box-shadow: 0 -18px 38px rgba(0, 0, 0, .64), inset 0 4px 0 #0c0d0c;
+  border-top: 1px solid #393939;
+  box-shadow: 0 -18px 38px rgba(0, 0, 0, .64), inset 0 4px 0 #0c0c0c;
   height: min(560px, calc(100svh - 18px));
   left: 0;
   top: auto;
@@ -805,7 +805,7 @@
 
 .edgeDrawerHeader {
   align-items: center;
-  border-bottom: 1px solid #2e312d;
+  border-bottom: 1px solid #2e2e2e;
   display: flex;
   justify-content: space-between;
   margin-top: 12px;
@@ -817,22 +817,22 @@
   }
 
   span {
-    color: #5d625c;
+    color: #5d5d5d;
     font-family: var(--font-geist-mono), monospace;
     font-size: 7px;
     letter-spacing: .16em;
   }
 
   h2 {
-    color: #c5c8c2;
+    color: #c4c4c4;
     font-size: 14px;
     letter-spacing: .1em;
     margin-top: 5px;
   }
 
   > button {
-    background: linear-gradient(180deg, #292c28, #171917);
-    border: 1px solid #3b3e39;
+    background: linear-gradient(180deg, #292929, #171717);
+    border: 1px solid #3a3a3a;
     border-radius: 3px;
     box-shadow: 0 3px 5px rgba(0, 0, 0, .4), inset 0 1px 0 rgba(255, 255, 255, .05);
     cursor: pointer;
@@ -846,7 +846,7 @@
     }
 
     i {
-      background: #8b8f88;
+      background: #8a8a8a;
       height: 1px;
       left: 9px;
       position: absolute;
@@ -868,8 +868,8 @@
 
 .edgeDrawerFooter {
   align-items: center;
-  background: #111311;
-  border-top: 1px solid #2d302c;
+  background: #111111;
+  border-top: 1px solid #2d2d2d;
   display: flex;
   min-height: 94px;
   padding: 12px 20px;
@@ -878,7 +878,7 @@
 .progressControl { width: 100%; }
 .progressHeader {
   align-items: center;
-  color: #9c9f9a;
+  color: #9b9b9b;
   display: flex;
   font-size: 11px;
   font-weight: 600;
@@ -887,15 +887,15 @@
   margin-bottom: 9px;
 
   output {
-    color: #83877f;
+    color: #818181;
     font-family: var(--font-geist-mono), monospace;
     font-size: 10px;
   }
 }
 
 .progressHousing {
-  background: #090a09;
-  border: 1px solid #292b29;
+  background: #090909;
+  border: 1px solid #292929;
   border-radius: 4px;
   box-shadow: inset 2px 3px 7px rgba(0, 0, 0, .88), 1px 1px 0 rgba(255, 255, 255, .04);
   height: 25px;
@@ -905,7 +905,7 @@
 }
 
 .progressFill {
-  background: linear-gradient(180deg, color-mix(in srgb, var(--signal-color) 76%, white), color-mix(in srgb, var(--signal-color) 70%, #172014));
+  background: linear-gradient(180deg, color-mix(in srgb, var(--signal-color) 76%, white), color-mix(in srgb, var(--signal-color) 70%, #161616));
   border-radius: 2px;
   box-shadow: 0 0 7px color-mix(in srgb, var(--signal-color) 25%, transparent), inset 0 1px 0 rgba(255, 255, 255, .22);
   height: 100%;
@@ -924,11 +924,11 @@
   background-color: var(--signal-color);
   background-image:
     linear-gradient(180deg, rgba(255, 255, 255, .25), rgba(0, 0, 0, .16)),
-    repeating-linear-gradient(90deg, transparent 0 13px, #090a09 13px 16px);
+    repeating-linear-gradient(90deg, transparent 0 13px, #090909 13px 16px);
 }
 
 .selectorLabel {
-  color: #9c9f9a;
+  color: #9b9b9b;
   display: block;
   font-size: 11px;
   font-weight: 600;
@@ -937,16 +937,16 @@
 }
 
 .steppedSelector {
-  background: linear-gradient(180deg, #292b29 0, #191b19 9%, #101110 100%);
-  border: 1px solid #343634;
+  background: linear-gradient(180deg, #292929 0, #191919 9%, #101010 100%);
+  border: 1px solid #343434;
   border-radius: 5px;
   box-shadow: inset 0 1px 0 rgba(255, 255, 255, .08), inset 0 -5px 9px rgba(0, 0, 0, .32), 0 4px 8px rgba(0, 0, 0, .38);
   padding: 9px 11px 8px;
 }
 
 .selectorRail {
-  background: #050605;
-  border: 1px solid #242624;
+  background: #050505;
+  border: 1px solid #242424;
   border-radius: 4px;
   box-shadow: inset 2px 4px 7px #000, 0 1px 0 rgba(255, 255, 255, .055);
   height: 34px;
@@ -956,10 +956,10 @@
 
 .selectorThumb {
   align-items: center;
-  background: linear-gradient(180deg, #41433f, #363835 47%, #2b2d2b);
-  border: 1px solid #494c47;
+  background: linear-gradient(180deg, #404040, #363636 47%, #2b2b2b);
+  border: 1px solid #484848;
   border-radius: 3px;
-  box-shadow: 0 4px 0 #0a0b0a, 0 7px 9px rgba(0, 0, 0, .58), inset 0 1px 0 rgba(255, 255, 255, .075), inset 0 -2px 0 rgba(0, 0, 0, .28);
+  box-shadow: 0 4px 0 #0a0a0a, 0 7px 9px rgba(0, 0, 0, .58), inset 0 1px 0 rgba(255, 255, 255, .075), inset 0 -2px 0 rgba(0, 0, 0, .28);
   display: flex;
   height: 26px;
   justify-content: center;
@@ -988,7 +988,7 @@
   button {
     background: transparent;
     border: 0;
-    color: #646863;
+    color: #646464;
     cursor: pointer;
     font-family: inherit;
     font-size: 9px;
@@ -997,7 +997,7 @@
     padding: 3px 2px 1px;
 
     i {
-      background: #2c2f2c;
+      background: #2c2c2c;
       border-radius: 50%;
       display: block;
       height: 3px;
@@ -1007,7 +1007,7 @@
   }
 
   .selectorOptionActive {
-    color: #c7c9c4;
+    color: #c6c6c6;
 
     i {
       background: #b7ff00;
@@ -1017,8 +1017,8 @@
 }
 
 .panelButton {
-  background: linear-gradient(180deg, #080908, #151715);
-  border: 1px solid #30332f;
+  background: linear-gradient(180deg, #080808, #151515);
+  border: 1px solid #303030;
   border-radius: 5px;
   box-shadow: inset 0 4px 7px rgba(0, 0, 0, .88), 0 1px 0 rgba(255, 255, 255, .035);
   cursor: pointer;
@@ -1031,7 +1031,7 @@
   }
 
   &:active:not(:disabled) .panelButtonCap {
-    box-shadow: inset 0 3px 5px rgba(0, 0, 0, .38), 0 1px 0 color-mix(in srgb, var(--panel-button-color) 35%, #080908);
+    box-shadow: inset 0 3px 5px rgba(0, 0, 0, .38), 0 1px 0 color-mix(in srgb, var(--panel-button-color) 35%, #080808);
     transform: translateY(3px);
   }
 
@@ -1056,16 +1056,16 @@
 .panelButtonCap {
   align-items: center;
   background:
-    linear-gradient(115deg, rgba(255, 255, 255, .095), transparent 32%),
-    linear-gradient(180deg, color-mix(in srgb, var(--panel-button-color) 68%, #343734), color-mix(in srgb, var(--panel-button-color) 38%, #161816));
-  border: 1px solid color-mix(in srgb, var(--panel-button-color) 48%, #161816);
+    linear-gradient(115deg, rgba(255, 255, 255, .16), transparent 34%),
+    linear-gradient(180deg, color-mix(in srgb, var(--panel-button-color) 82%, #4a4a4a), color-mix(in srgb, var(--panel-button-color) 64%, #202020));
+  border: 1px solid color-mix(in srgb, var(--panel-button-color) 62%, #181818);
   border-radius: 3px;
   box-shadow:
     inset 0 1px 0 rgba(255, 255, 255, .12),
     inset 0 -4px 5px rgba(0, 0, 0, .25),
-    0 4px 0 color-mix(in srgb, var(--panel-button-color) 24%, #080908),
+    0 4px 0 color-mix(in srgb, var(--panel-button-color) 24%, #080808),
     0 6px 7px rgba(0, 0, 0, .62);
-  color: #e1e3de;
+  color: #e0e0e0;
   display: flex;
   font-family: inherit;
   font-size: 11px;
@@ -1084,7 +1084,7 @@
 .panelButtonActive .panelButtonCap {
   box-shadow:
     inset 0 3px 5px rgba(0, 0, 0, .35),
-    0 1px 0 color-mix(in srgb, var(--panel-button-color) 30%, #080908),
+    0 1px 0 color-mix(in srgb, var(--panel-button-color) 30%, #080808),
     0 0 8px color-mix(in srgb, var(--panel-button-color) 14%, transparent);
   filter: brightness(.88);
   transform: translateY(3px);
@@ -1099,14 +1099,14 @@
 
   .panelButtonCap {
     background:
-      linear-gradient(180deg, rgba(255, 255, 255, .3) 0, rgba(255, 255, 255, .11) 46%, transparent 47%),
-      linear-gradient(180deg, color-mix(in srgb, var(--panel-button-color) 76%, #d8dad4), color-mix(in srgb, var(--panel-button-color) 70%, #343834) 52%, color-mix(in srgb, var(--panel-button-color) 48%, #1b1d1b));
-    border: 1px solid color-mix(in srgb, var(--panel-button-color) 58%, #0c0d0c);
+      linear-gradient(180deg, rgba(255, 255, 255, .36) 0, rgba(255, 255, 255, .14) 46%, transparent 47%),
+      linear-gradient(180deg, color-mix(in srgb, var(--panel-button-color) 84%, #e2e2e2), color-mix(in srgb, var(--panel-button-color) 80%, #444444) 52%, color-mix(in srgb, var(--panel-button-color) 64%, #202020));
+    border: 1px solid color-mix(in srgb, var(--panel-button-color) 68%, #101010);
     border-radius: 7px;
     box-shadow:
       inset 0 1px 0 rgba(255, 255, 255, .38),
       inset 0 0 0 1px rgba(255, 255, 255, .055),
-      0 1px 0 #080908,
+      0 1px 0 #080808,
       0 2px 5px rgba(0, 0, 0, .48);
     min-height: 34px;
     padding: 0 14px;
@@ -1121,7 +1121,7 @@
     box-shadow:
       inset 0 1px 0 rgba(255, 255, 255, .38),
       inset 0 0 0 1px rgba(255, 255, 255, .055),
-      0 1px 0 #080908,
+      0 1px 0 #080808,
       0 2px 5px rgba(0, 0, 0, .48);
     filter: brightness(.91) saturate(1.02);
     transform: none;
@@ -1129,11 +1129,11 @@
 }
 
 .panelButtonClassic.panelButtonActive .panelButtonCap {
-  border-color: color-mix(in srgb, var(--panel-button-color) 74%, #e7e9e2);
+  border-color: color-mix(in srgb, var(--panel-button-color) 74%, #e5e5e5);
   box-shadow:
     inset 0 1px 0 rgba(255, 255, 255, .38),
     inset 0 0 0 1px rgba(255, 255, 255, .055),
-    0 1px 0 #080908,
+    0 1px 0 #080808,
     0 0 7px color-mix(in srgb, var(--panel-button-color) 24%, transparent);
   filter: brightness(.94);
   transform: none;
@@ -1159,14 +1159,14 @@
   .panelButtonCap {
     background: linear-gradient(
       180deg,
-      color-mix(in srgb, var(--panel-button-color) 52%, #4f534d),
-      color-mix(in srgb, var(--panel-button-color) 38%, #292c29)
+      color-mix(in srgb, var(--panel-button-color) 68%, #5a5a5a),
+      color-mix(in srgb, var(--panel-button-color) 54%, #303030)
     );
-    border: 1px solid color-mix(in srgb, var(--panel-button-color) 40%, #161816);
+    border: 1px solid color-mix(in srgb, var(--panel-button-color) 54%, #181818);
     border-radius: 4px;
     box-shadow:
       inset 0 1px 0 rgba(255, 255, 255, .075),
-      0 1px 0 #080908,
+      0 1px 0 #080808,
       0 2px 3px rgba(0, 0, 0, .36);
     font-size: 10px;
     min-height: 30px;
@@ -1181,7 +1181,7 @@
   &:active:not(:disabled) .panelButtonCap {
     box-shadow:
       inset 0 1px 0 rgba(255, 255, 255, .075),
-      0 1px 0 #080908,
+      0 1px 0 #080808,
       0 2px 3px rgba(0, 0, 0, .36);
     filter: brightness(.88);
     transform: none;
@@ -1189,10 +1189,10 @@
 }
 
 .panelButtonSubtle.panelButtonActive .panelButtonCap {
-  border-color: color-mix(in srgb, var(--panel-button-color) 64%, #c9ccc4);
+  border-color: color-mix(in srgb, var(--panel-button-color) 64%, #c7c7c7);
   box-shadow:
     inset 0 1px 0 rgba(255, 255, 255, .075),
-    0 1px 0 #080908,
+    0 1px 0 #080808,
     0 0 5px color-mix(in srgb, var(--panel-button-color) 17%, transparent);
   filter: brightness(.93);
   transform: none;
@@ -1222,8 +1222,8 @@
 
 .panelToggle {
   align-items: center;
-  background: #101210;
-  border: 1px solid #292c29;
+  background: #101010;
+  border: 1px solid #292929;
   border-radius: 4px;
   box-shadow: inset 1px 2px 5px rgba(0, 0, 0, .52), 1px 1px 0 rgba(255, 255, 255, .028);
   display: flex;
@@ -1241,14 +1241,14 @@
   text-align: left;
 
   strong {
-    color: #b7bab4;
+    color: #b6b6b6;
     font-size: 11px;
     font-weight: 620;
     letter-spacing: .07em;
   }
 
   small {
-    color: #555a54;
+    color: #555555;
     font-family: var(--font-geist-mono), monospace;
     font-size: 7px;
     letter-spacing: .11em;
@@ -1257,8 +1257,8 @@
 }
 
 .panelToggleSwitch {
-  background: #070807;
-  border: 1px solid #292c28;
+  background: #070707;
+  border: 1px solid #292929;
   border-radius: 4px;
   box-shadow: inset 2px 3px 6px rgba(0, 0, 0, .88), 0 1px 0 rgba(255, 255, 255, .045);
   cursor: pointer;
@@ -1276,15 +1276,15 @@
     width: 2px;
   }
 
-  &::before { border: 1px solid #474b46; border-width: 0 1px; left: 9px; }
-  &::after { border: 1px solid #3d413c; border-radius: 50%; height: 5px; right: 9px; top: 12px; width: 5px; }
+  &::before { border: 1px solid #474747; border-width: 0 1px; left: 9px; }
+  &::after { border: 1px solid #3d3d3d; border-radius: 50%; height: 5px; right: 9px; top: 12px; width: 5px; }
 
   > span {
     align-items: center;
-    background: linear-gradient(180deg, #535650, #30332f);
-    border: 1px solid #5b5f58;
+    background: linear-gradient(180deg, #525252, #303030);
+    border: 1px solid #5a5a5a;
     border-radius: 3px;
-    box-shadow: 0 3px 0 #090a09, 0 5px 6px rgba(0, 0, 0, .62), inset 0 1px 0 rgba(255, 255, 255, .1);
+    box-shadow: 0 3px 0 #090909, 0 5px 6px rgba(0, 0, 0, .62), inset 0 1px 0 rgba(255, 255, 255, .1);
     display: flex;
     height: 24px;
     justify-content: center;
@@ -1297,7 +1297,7 @@
     z-index: 1;
 
     i {
-      background: #181a18;
+      background: #181818;
       box-shadow: 1px 0 rgba(255, 255, 255, .08);
       height: 11px;
       margin: 0 1.5px;
@@ -1315,9 +1315,9 @@
   }
 
   > span {
-    background: linear-gradient(180deg, #b4b7b0, #686c66 54%, #454844);
-    border-color: #b9bcb5;
-    box-shadow: 0 3px 0 #090a09, 0 5px 6px rgba(0, 0, 0, .62), inset 0 1px 0 rgba(255, 255, 255, .25);
+    background: linear-gradient(180deg, #b2b2b2, #676767 54%, #454545);
+    border-color: #b7b7b7;
+    box-shadow: 0 3px 0 #090909, 0 5px 6px rgba(0, 0, 0, .62), inset 0 1px 0 rgba(255, 255, 255, .25);
     transform: translateX(26px);
   }
 }
@@ -1325,24 +1325,24 @@
 .panelControlDisabled { opacity: .46; }
 
 .panelControlSubtle {
-  background: #121412;
+  background: #121212;
   box-shadow: inset 0 1px 3px rgba(0, 0, 0, .38), 1px 1px 0 rgba(255, 255, 255, .025);
 
   .panelToggleSwitch {
-    background: #0b0c0b;
-    border-color: #30332f;
+    background: #0b0b0b;
+    border-color: #303030;
     box-shadow: inset 0 2px 4px rgba(0, 0, 0, .72), 0 1px 0 rgba(255, 255, 255, .035);
 
-    &::before { border-color: #3c403a; }
-    &::after { border-color: #363a35; }
+    &::before { border-color: #3b3b3b; }
+    &::after { border-color: #363636; }
 
     > span {
-      background: linear-gradient(180deg, #3b3e39, #242724);
-      border-color: #474b45;
+      background: linear-gradient(180deg, #3a3a3a, #242424);
+      border-color: #464646;
       box-shadow: inset 0 1px 0 rgba(255, 255, 255, .07), 0 2px 3px rgba(0, 0, 0, .38);
 
       i {
-        background: #171917;
+        background: #171717;
         box-shadow: 1px 0 rgba(255, 255, 255, .045);
       }
     }
@@ -1355,8 +1355,8 @@
     }
 
     > span {
-      background: linear-gradient(180deg, #555b50, #353a33);
-      border-color: #697264;
+      background: linear-gradient(180deg, #535353, #343434);
+      border-color: #676767;
       box-shadow: inset 0 1px 0 rgba(255, 255, 255, .1), 0 2px 3px rgba(0, 0, 0, .38);
     }
   }
@@ -1364,7 +1364,7 @@
 }
 
 .segmentedLabel {
-  color: #777c75;
+  color: #767676;
   display: block;
   font-family: var(--font-geist-mono), monospace;
   font-size: 8px;
@@ -1373,8 +1373,8 @@
 }
 
 .segmentedButtons {
-  background: #090a09;
-  border: 1px solid #292b29;
+  background: #090909;
+  border: 1px solid #292929;
   border-radius: 5px;
   box-shadow: inset 1px 3px 6px rgba(0, 0, 0, .86), 0 1px 0 rgba(255, 255, 255, .035);
   display: grid;
@@ -1383,11 +1383,11 @@
 
   button {
     align-items: center;
-    background: linear-gradient(180deg, #30332f, #1b1d1b);
-    border: 1px solid #3b3e39;
-    border-left-color: #181a18;
+    background: linear-gradient(180deg, #303030, #1b1b1b);
+    border: 1px solid #3a3a3a;
+    border-left-color: #181818;
     box-shadow: inset 0 1px 0 rgba(255, 255, 255, .055), 0 3px 3px rgba(0, 0, 0, .38);
-    color: #777c75;
+    color: #767676;
     cursor: pointer;
     display: flex;
     font-family: var(--font-geist-mono), monospace;
@@ -1397,12 +1397,12 @@
     letter-spacing: .08em;
     min-height: 34px;
 
-    &:first-child { border-radius: 3px 0 0 3px; border-left-color: #3b3e39; }
+    &:first-child { border-radius: 3px 0 0 3px; border-left-color: #3a3a3a; }
     &:last-child { border-radius: 0 3px 3px 0; }
     &:focus-visible { outline: 2px solid rgba(183, 255, 0, .44); outline-offset: -2px; z-index: 1; }
 
     i {
-      background: #393d38;
+      background: #393939;
       border-radius: 50%;
       height: 4px;
       width: 4px;
@@ -1410,9 +1410,9 @@
   }
 
   .segmentedButtonActive {
-    background: linear-gradient(180deg, #1c1f1b, #111311);
+    background: linear-gradient(180deg, #1c1c1c, #111111);
     box-shadow: inset 1px 3px 5px rgba(0, 0, 0, .78);
-    color: #c2c6bf;
+    color: #c1c1c1;
 
     i { background: #b7ff00; box-shadow: 0 0 5px rgba(183, 255, 0, .3); }
   }

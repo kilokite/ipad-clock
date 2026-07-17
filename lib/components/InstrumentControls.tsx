@@ -19,19 +19,19 @@ const signalColors: Record<SignalColor, string> = {
 }
 
 const tapeButtonColors: Record<TapeButtonColor, string> = {
-  red: '#c94d3b',
-  orange: '#ce713a',
-  yellow: '#c9a643',
-  green: '#5c925c',
-  blue: '#547aa1',
-  ivory: '#c7c1a5',
+  red: '#ef4b3e',
+  orange: '#f47a32',
+  yellow: '#f2c83f',
+  green: '#63c96b',
+  blue: '#4e9be8',
+  ivory: '#e7dfbd',
 }
 
 const panelButtonColors: Record<PanelButtonTone, string> = {
-  neutral: '#777c74',
-  green: '#8fad62',
-  amber: '#b78947',
-  red: '#ae5a4d',
+  neutral: '#969696',
+  green: '#8bcf52',
+  amber: '#e0a03b',
+  red: '#d95b50',
 }
 
 function clamp(value: number, min: number, max: number) {
