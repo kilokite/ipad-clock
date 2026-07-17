@@ -10,6 +10,7 @@ type TapeButtonColor = 'red' | 'orange' | 'yellow' | 'green' | 'blue' | 'ivory'
 type TapeButtonIcon = 'record' | 'play' | 'stop' | 'pause' | 'rewind' | 'fast-forward' | 'eject'
 type PanelButtonTone = 'neutral' | 'green' | 'amber' | 'red'
 type PanelButtonIcon = 'check' | 'reset' | 'trash' | 'more' | 'lock'
+type PanelControlFinish = 'mechanical' | 'subtle'
 
 const signalColors: Record<SignalColor, string> = {
   green: '#b7ff00',
@@ -603,16 +604,24 @@ export function PanelToggle({
   description,
   checked,
   onChange,
+  finish = 'mechanical',
   disabled = false,
 }: {
   label: string
   description?: string
   checked: boolean
   onChange: (checked: boolean) => void
+  finish?: PanelControlFinish
   disabled?: boolean
 }) {
   return (
-    <div className={classNames(css.panelToggle, disabled && css.panelControlDisabled)}>
+    <div
+      className={classNames(
+        css.panelToggle,
+        finish === 'subtle' && css.panelControlSubtle,
+        disabled && css.panelControlDisabled,
+      )}
+    >
       <span className={css.panelControlCopy}>
         <strong>{label}</strong>
         {description && <small>{description}</small>}
@@ -629,37 +638,6 @@ export function PanelToggle({
         <span><i /><i /><i /></span>
       </button>
     </div>
-  )
-}
-
-export function PanelCheckbox({
-  label,
-  description,
-  checked,
-  onChange,
-  disabled = false,
-}: {
-  label: string
-  description?: string
-  checked: boolean
-  onChange: (checked: boolean) => void
-  disabled?: boolean
-}) {
-  return (
-    <button
-      type="button"
-      className={classNames(css.panelCheckbox, checked && css.panelCheckboxChecked)}
-      role="checkbox"
-      aria-checked={checked}
-      disabled={disabled}
-      onClick={() => onChange(!checked)}
-    >
-      <span className={css.panelCheckboxBox} aria-hidden="true"><i /></span>
-      <span className={css.panelControlCopy}>
-        <strong>{label}</strong>
-        {description && <small>{description}</small>}
-      </span>
-    </button>
   )
 }
 

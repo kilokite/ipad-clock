@@ -10,7 +10,6 @@ import {
   LCD1602A,
   NumericLCD,
   PanelButton,
-  PanelCheckbox,
   PanelDropdown,
   PanelToggle,
   SegmentedButtons,
@@ -78,7 +77,6 @@ export default function ComponentsPage() {
   const [drawerEdge, setDrawerEdge] = useState<'right' | 'bottom'>('right')
   const [autoStandby, setAutoStandby] = useState(true)
   const [loudness, setLoudness] = useState(false)
-  const [speakerProtect, setSpeakerProtect] = useState(true)
   const [listeningZone, setListeningZone] = useState<(typeof listeningZones)[number]>('A')
   const [commandStatus, setCommandStatus] = useState('CONTROL READY')
 
@@ -225,13 +223,12 @@ export default function ComponentsPage() {
 
           <div className={styles.uiModule}>
             <div className={styles.uiModuleHeader}>
-              <div><span>COMMON CONTROLS</span><small>SWITCH · CHECK · SEGMENT</small></div>
+              <div><span>COMMON CONTROLS</span><small>SWITCH · SEGMENT</small></div>
               <i aria-hidden="true" />
             </div>
             <div className={styles.commonControls}>
-              <PanelToggle label="自动待机" description="20 MIN NO SIGNAL" checked={autoStandby} onChange={setAutoStandby} />
-              <PanelToggle label="响度补偿" description="LOW LEVEL CONTOUR" checked={loudness} onChange={setLoudness} />
-              <PanelCheckbox label="扬声器保护" description="OUTPUT RELAY GUARD" checked={speakerProtect} onChange={setSpeakerProtect} />
+              <PanelToggle finish="subtle" label="自动待机" description="20 MIN NO SIGNAL" checked={autoStandby} onChange={setAutoStandby} />
+              <PanelToggle finish="subtle" label="响度补偿" description="LOW LEVEL CONTOUR" checked={loudness} onChange={setLoudness} />
               <SegmentedButtons label="SPEAKER ZONE" options={listeningZones} value={listeningZone} onChange={setListeningZone} />
             </div>
           </div>
